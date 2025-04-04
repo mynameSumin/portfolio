@@ -1,0 +1,7 @@
+.star {
+  position: absolute;
+  left: var(--x);
+  top: var(--y); 
+  opacity: 0.8;
+  transform: translate(-50%, -50%);
+}

@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route } from 'react-router-dom';
 import HomePage from "./pages/MainPage";
+import './index.css';
 
 function App() {
   return (
