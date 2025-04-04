@@ -1,64 +1,28 @@
 import "../styles/Main.css";
 import { useMemo, useEffect } from "react";
-import { generateStars } from "../utils/starAnimation";
-import anime from "animejs";
+import { generateStars, animateStars } from "../utils/starAnimation";
+import { animateName, animateImage } from "../utils/animeAnimation";
 import myCharacter from "../assets/myCharacter.png";
 
 function HomePage() {
   const stars = useMemo(() => generateStars(80), []);
-  const moveStarWithoutCenter = (
-    min: number,
-    max: number,
-    excludeMin: number,
-    excludeMax: number
-  ) => {
-    let value = 0;
-    while (value > excludeMin && value < excludeMax) {
-      value = Math.random() * max - min;
-    }
-
-    return value;
-  };
+  
   useEffect(() => {
-    stars.forEach((_, idx) => {
-      const finalX = moveStarWithoutCenter(700, 1600, -100, 100);
-      const finalY = moveStarWithoutCenter(700, 1600, -200, 50);
-      const finalScale = Math.random() + 0.5;
-      anime({
-        targets: `.star-${idx}`,
-        translateX: finalX,
-        translateY: finalY,
-        delay: idx * 15,
-        duration: 5000,
-        scale: finalScale,
-        easing: "easeOutElastic",
-        loop: false,
-      });
-    });
+    animateStars(stars);
     
     const height = window.innerHeight;
-    anime({
-      targets: ".name",
-      scale: 5,
-      translateY: -height * 0.06,
-      delay: 700,
-      duration: 5000,
-      opacity: 1,
-      easing: "easeOutElastic",
-    });
-
-    anime({
-      targets: ".image",
-      scale: 20,
-      delay: 700,
-      duration: 5000,
-      opacity: 1,
-      easing: "easeOutElastic",
-    });
+    animateName(height);
+    animateImage();
+   
   }, []);
 
   return (
     <div className="bg-sky-950 w-screen h-screen overflow-hidden relative">
+        <header className="columns-3 mt-6 font-medium flex justify-center gap-[15%]">
+    <div className="text-3xl opacity-0">ABOUT ME</div>
+    <div className="text-3xl opacity-0">PROJECTS</div>
+    <div className="text-3xl opacity-0">CONTACT</div>
+        </header>
       {stars.map((star, idx) => (
         <div
           key={idx}
@@ -67,6 +31,7 @@ function HomePage() {
             {
               "--x": star.x,
               "--y": star.y,
+              opacity: 0
             } as React.CSSProperties
           }
         />

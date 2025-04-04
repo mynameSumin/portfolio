@@ -2,6 +2,6 @@
   position: absolute;
   left: var(--x);
   top: var(--y); 
-  opacity: 0.8;
+  opacity: 0.5;
   transform: translate(-50%, -50%);
 }
