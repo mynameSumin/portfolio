@@ -5,3 +5,7 @@
   opacity: 0.5;
   transform: translate(-50%, -50%);
 }
+
+/* .letter {
+  font-size: clamp(1rem, 2vw + 1rem, 0.8rem);
+} */
