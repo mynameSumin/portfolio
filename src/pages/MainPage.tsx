@@ -171,7 +171,7 @@ function HomePage() {
                 </a>
             </div>
           </section>
-          <section className="px-5 border-b-2 text-stone-50 pb-5 mb-30">
+          <section className="px-5 border-b-2 text-stone-50 pb-5 mb-50">
             <div className="font-phudu text-stone-50 text-7xl my-10 font-extrabold">
               CONTACT
             </div>

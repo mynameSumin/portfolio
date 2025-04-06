@@ -15,12 +15,7 @@ import JS from "../assets/JavaScript.png";
 import Tailwind from "../assets/Tailwind.png";
 import TypeScript from "../assets/TypeScript.png";
 import Threejs from "../assets/Threejs.png";
-import Cpp from "../assets/Cpp.png";
-import Figma from "../assets/Figma.png";
-import GitHub from "../assets/GitHub.png";
-import nodejs from "../assets/Nodejs.png";
 import React from "../assets/React.png";
-import Slack from "../assets/Slack.png";
 
 function RotateCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
