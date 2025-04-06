@@ -11,10 +11,12 @@ import myCharacter from "../assets/myCharacter.png";
 import RotateCanvas from "../components/RotateCanvas.tsx";
 
 function HomePage() {
-  const listStyling = "inline font-extrabold leading-26 lg:leading-35 text-6xl md:text-7xl lg:text-8xl";
-  const infoStyling = "info leading-8 opacity-0 text-sm sm:text-xl text-stone-50";
-  const stars = useMemo(() => generateStars(80), []); //별 생성
-  
+  const listStyling =
+    "inline font-extrabold leading-26 lg:leading-35 text-6xl md:text-7xl lg:text-8xl";
+  const infoStyling =
+    "info leading-8 opacity-0 text-sm sm:text-xl text-stone-50";
+  const stars = useMemo(() => generateStars(100), []); //별 생성
+
   //resize 관련
   const isInitialRender = useRef(true);
   const [isClicked, setIsClicked] = useState(false);
@@ -37,35 +39,37 @@ function HomePage() {
     };
   }, [isClicked]);
 
-    //스크롤에 따른 텍스트 색상 변경
-    const changeTextColor = (): void => {
-      if (document.getElementById("on"))
-        document.getElementById("on")?.removeAttribute("id");
+  //스크롤에 따른 텍스트 색상 변경
+  const changeTextColor = (): void => {
+    if (document.getElementById("on"))
+      document.getElementById("on")?.removeAttribute("id");
 
-      const ulElement = document.querySelector("ul");
-      const startY = ulElement?.getBoundingClientRect().top;
-      const endY = ulElement?.getBoundingClientRect().bottom;
-      const listItem = document.querySelectorAll(".custom-list");
-      const body = document.getElementsByClassName("body");
-      const scrollY = body[0]?.scrollTop;
-        
-      if (startY && endY && scrollY) {
-        if (scrollY > startY / 4 && scrollY < endY - startY / 4) {
-          const length = (endY - startY) / listItem.length; //한 요소 당 스크롤 길이
-          const itemNum = Math.floor((scrollY - startY / 4) / length);
-          listItem[itemNum].id = "on";
-        }
+    const ulElement = document.querySelector("ul");
+    const startY = ulElement?.getBoundingClientRect().top;
+    const endY = ulElement?.getBoundingClientRect().bottom;
+    const listItem = document.querySelectorAll(".custom-list");
+    const body = document.getElementsByClassName("body");
+    const scrollY = body[0]?.scrollTop;
+
+    if (startY && endY && scrollY) {
+      if (scrollY > startY / 4 && scrollY < endY - startY / 4) {
+        const length = (endY - startY) / listItem.length; //한 요소 당 스크롤 길이
+        const itemNum = Math.floor((scrollY - startY / 4) / length);
+        listItem[itemNum].id = "on";
       }
-    };
+    }
+  };
 
   useEffect(() => {
     animateStars(stars);
     animateName();
     animateImage();
-    document.querySelector(".body")
+    document
+      .querySelector(".body")
       ?.addEventListener("scroll", changeTextColor);
     return () => {
-      document.querySelector(".body")
+      document
+        .querySelector(".body")
         ?.removeEventListener("scroll", changeTextColor);
     };
   }, []);
@@ -128,15 +132,69 @@ function HomePage() {
             <div className={`${infoStyling}`}>phone | 010-5578-4167</div>
           </div>
           <ul className="list-inside justify-between explain opacity-0 text-stone-50 mx-auto mt-10 p-0 z-10 mb-50">
-            <li className={`${listStyling} custom-list tracking-[0.0764em]`}> 배움이 빠른</li>
-            <li className={`${listStyling} custom-list tracking-[0.0694em]`}> 긍정적인</li>
-            <li className={`${listStyling} custom-list tracking-[0.05em]`}> 소통이 잘 되는</li>
-            <li className={`${listStyling} custom-list tracking-[0.041em]`}> 집중력이 높은</li>
-            <li className={`${listStyling} custom-list tracking-[0.05em]`}> 기록을 남기는</li>
-            <li className={`${listStyling} custom-list tracking-[0.069em]`}> 새로움에 관심이 많은</li>
+            <li className={`${listStyling} custom-list tracking-[0.0764em]`}>
+              {" "}
+              배움이 빠른
+            </li>
+            <li className={`${listStyling} custom-list tracking-[0.0694em]`}>
+              {" "}
+              긍정적인
+            </li>
+            <li className={`${listStyling} custom-list tracking-[0.05em]`}>
+              {" "}
+              소통이 잘 되는
+            </li>
+            <li className={`${listStyling} custom-list tracking-[0.041em]`}>
+              {" "}
+              집중력이 높은
+            </li>
+            <li className={`${listStyling} custom-list tracking-[0.05em]`}>
+              {" "}
+              기록을 남기는
+            </li>
+            <li className={`${listStyling} custom-list tracking-[0.069em]`}>
+              {" "}
+              새로움에 관심이 많은
+            </li>
           </ul>
           <section>
-            <RotateCanvas/>
+            <RotateCanvas />
+          </section>
+          <section className="px-5 border-b-2 text-stone-50 pb-5">
+            <div className="font-phudu text-stone-50 text-7xl my-10 font-extrabold">
+              PROJECTS
+            </div>
+            <div className="pointer-events-auto font-phudu text-stone-50 text-7xl font-extrabold mb-10 mr-10 tracking-[0.069em] leading-23 opacity-25 hover:opacity-100 transition-opacity duration-500">
+              <a href="https://www.notion.so/16ef3b205f1e80079ce2e2f3faf613c4?v=f9b691cba218416abfec4a4555365c5b" target="_blank">
+              프로젝트 공간으로
+              <br /> 이동하기
+                </a>
+            </div>
+          </section>
+          <section className="px-5 border-b-2 text-stone-50 pb-5 mb-30">
+            <div className="font-phudu text-stone-50 text-7xl my-10 font-extrabold">
+              CONTACT
+            </div>
+            {/* <div className="font-phudu text-stone-50 text-7xl font-extrabold mb-10 mr-10 opacity-25 tracking-[0.069em] leading-23">CONTACT 공간으로<br/> 이동하기</div> */}
+            <div className="info-box font-phudu mb-10 pointer-events-auto">
+              <div className="info leading-8 text-7xl sm:text-xl text-stone-50">
+                email | msm4167@naver.com
+              </div>
+              <div className="info leading-8 text-7xl sm:text-xl text-stone-50">
+                <a href="https://github.com/mynameSumin" target="_blank">
+                  github | mynamesumin
+                </a>
+              </div>
+              <div className="info leading-8 text-sm sm:text-xl text-stone-50">
+                blog |{" "}
+                <a href="https://velog.io/@msm4167/posts" target="_blank">
+                  https://velog.io/@msm4167/posts
+                </a>
+              </div>
+              <div className="info leading-8 text-sm sm:text-xl text-stone-50">
+                phone | 010-5578-4167
+              </div>
+            </div>
           </section>
         </div>
       </div>

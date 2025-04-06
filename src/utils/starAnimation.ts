@@ -35,7 +35,7 @@ export const generateStars = (count: number): Stars[] => {
   export const animateStars = (stars: any[]) => {
     stars.forEach((_, idx) => {
       const finalX = moveStarWithoutCenter(700, 1600, -100, 100);
-      const finalY = moveStarWithoutCenter(700, 1600, -200, 50);
+      const finalY = moveStarWithoutCenter(700, 3000, -200, 50);
       const finalScale = Math.random() + 0.5;
       anime({
         targets: `.star-${idx}`,
