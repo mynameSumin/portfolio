@@ -8,9 +8,11 @@ import {
   resizeLetterSpace,
 } from "../utils/animeAnimation";
 import myCharacter from "../assets/myCharacter.png";
+import RotateCanvas from "../components/RotateCanvas.tsx";
 
 function HomePage() {
   const listStyling = "inline font-extrabold leading-26 lg:leading-35 text-6xl md:text-7xl lg:text-8xl";
+  const infoStyling = "info leading-8 opacity-0 text-sm sm:text-xl text-stone-50";
   const stars = useMemo(() => generateStars(80), []); //별 생성
   
   //resize 관련
@@ -28,6 +30,13 @@ function HomePage() {
     }
   };
 
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isClicked]);
+
     //스크롤에 따른 텍스트 색상 변경
     const changeTextColor = (): void => {
       if (document.getElementById("on"))
@@ -41,8 +50,6 @@ function HomePage() {
       const scrollY = body[0]?.scrollTop;
         
       if (startY && endY && scrollY) {
-        console.log(startY, endY);
-        console.log(scrollY);
         if (scrollY > startY / 4 && scrollY < endY - startY / 4) {
           const length = (endY - startY) / listItem.length; //한 요소 당 스크롤 길이
           const itemNum = Math.floor((scrollY - startY / 4) / length);
@@ -55,23 +62,13 @@ function HomePage() {
     animateStars(stars);
     animateName();
     animateImage();
-    document
-      .querySelector(".body")
+    document.querySelector(".body")
       ?.addEventListener("scroll", changeTextColor);
     return () => {
-      document
-        .querySelector(".body")
+      document.querySelector(".body")
         ?.removeEventListener("scroll", changeTextColor);
     };
   }, []);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [isClicked]);
 
   return (
     <div className="body bg-sky-950 h-screen z-0 overflow-hidden relative px-4 md:px-[7%] lg:px-[20%]">
@@ -115,24 +112,20 @@ function HomePage() {
           alt="Character"
         />
         <div className="min-h-100 pointer-events-none relative flex-col justify-center">
-          <div className="text-right font-phudu mt-20 mb-60 pointer-events-auto">
-            <div className="info leading-8 opacity-0 text-sm sm:text-xl text-stone-50">
-              email | msm4167@naver.com
-            </div>
-            <div className="info leading-8 opacity-0 text-sm sm:text-xl text-stone-50">
+          <div className="info-box text-right font-phudu mt-20 mb-60 pointer-events-none">
+            <div className={`${infoStyling}`}>email | msm4167@naver.com</div>
+            <div className={`${infoStyling}`}>
               <a href="https://github.com/mynameSumin" target="_blank">
-                github | mynamesymin
+                github | mynamesumin
               </a>
             </div>
-            <div className="info leading-8 opacity-0 text-sm sm:text-xl text-stone-50">
+            <div className={`${infoStyling}`}>
               blog |{" "}
               <a href="https://velog.io/@msm4167/posts" target="_blank">
                 https://velog.io/@msm4167/posts
               </a>
             </div>
-            <div className="info leading-8 opacity-0 text-sm sm:text-xl text-stone-50">
-              phone | 010-5578-4167
-            </div>
+            <div className={`${infoStyling}`}>phone | 010-5578-4167</div>
           </div>
           <ul className="list-inside justify-between explain opacity-0 text-stone-50 mx-auto mt-10 p-0 z-10 mb-50">
             <li className={`${listStyling} custom-list tracking-[0.0764em]`}> 배움이 빠른</li>
@@ -142,9 +135,9 @@ function HomePage() {
             <li className={`${listStyling} custom-list tracking-[0.05em]`}> 기록을 남기는</li>
             <li className={`${listStyling} custom-list tracking-[0.069em]`}> 새로움에 관심이 많은</li>
           </ul>
-          <div className="font-phudu border-b-4 pb-5 font-extrabold text-stone-50 text-6xl md:text-7xl lg:text-7xl">SKILLS</div>
-          <div className="font-phudu text-stone-50 text-6xl my-5 font-bold">FE</div>
-          <div className="font-phudu text-stone-50 text-6xl mb-5">JAVASCRIPT</div>
+          <section>
+            <RotateCanvas/>
+          </section>
         </div>
       </div>
     </div>
