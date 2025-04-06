@@ -10,7 +10,10 @@ import {
 import myCharacter from "../assets/myCharacter.png";
 
 function HomePage() {
-  const stars = useMemo(() => generateStars(80), []);
+  const listStyling = "inline font-extrabold leading-26 lg:leading-35 text-6xl md:text-7xl lg:text-8xl";
+  const stars = useMemo(() => generateStars(80), []); //별 생성
+  
+  //resize 관련
   const isInitialRender = useRef(true);
   const [isClicked, setIsClicked] = useState(false);
   const handleResize = (): any => {
@@ -21,15 +24,45 @@ function HomePage() {
     }
 
     if (isClicked) {
-      console.log("resize!");
       resizeLetterSpace(width);
     }
   };
+
+    //스크롤에 따른 텍스트 색상 변경
+    const changeTextColor = (): void => {
+      if (document.getElementById("on"))
+        document.getElementById("on")?.removeAttribute("id");
+
+      const ulElement = document.querySelector("ul");
+      const startY = ulElement?.getBoundingClientRect().top;
+      const endY = ulElement?.getBoundingClientRect().bottom;
+      const listItem = document.querySelectorAll(".custom-list");
+      const body = document.getElementsByClassName("body");
+      const scrollY = body[0]?.scrollTop;
+        
+      if (startY && endY && scrollY) {
+        console.log(startY, endY);
+        console.log(scrollY);
+        if (scrollY > startY / 4 && scrollY < endY - startY / 4) {
+          const length = (endY - startY) / listItem.length; //한 요소 당 스크롤 길이
+          const itemNum = Math.floor((scrollY - startY / 4) / length);
+          listItem[itemNum].id = "on";
+        }
+      }
+    };
 
   useEffect(() => {
     animateStars(stars);
     animateName();
     animateImage();
+    document
+      .querySelector(".body")
+      ?.addEventListener("scroll", changeTextColor);
+    return () => {
+      document
+        .querySelector(".body")
+        ?.removeEventListener("scroll", changeTextColor);
+    };
   }, []);
 
   useEffect(() => {
@@ -41,7 +74,7 @@ function HomePage() {
   }, [isClicked]);
 
   return (
-    <div className="bg-sky-950 h-screen z-0 overflow-hidden relative px-4 md:px-[7%] lg:px-[20%]">
+    <div className="body bg-sky-950 h-screen z-0 overflow-hidden relative px-4 md:px-[7%] lg:px-[20%]">
       <header className="opacity-0 columns-3 mt-6 font-medium flex justify-between">
         <div className="text-2xl sm:text-3xl text-cyan-700">ABOUT ME</div>
         <div className="text-2xl sm:text-3xl text-cyan-700">PROJECTS</div>
@@ -81,16 +114,15 @@ function HomePage() {
           src={myCharacter}
           alt="Character"
         />
-        <div className="min-h-100 pointer-events-none relative flex-col  justify-center">
-          <div className="text-right  mt-10 mb-60 pointer-events-auto">
+        <div className="min-h-100 pointer-events-none relative flex-col justify-center">
+          <div className="text-right font-phudu mt-20 mb-60 pointer-events-auto">
             <div className="info leading-8 opacity-0 text-sm sm:text-xl text-stone-50">
               email | msm4167@naver.com
             </div>
             <div className="info leading-8 opacity-0 text-sm sm:text-xl text-stone-50">
-            <a href="https://github.com/mynameSumin" target="_blank">
-            github | mynamesymin
+              <a href="https://github.com/mynameSumin" target="_blank">
+                github | mynamesymin
               </a>
-              
             </div>
             <div className="info leading-8 opacity-0 text-sm sm:text-xl text-stone-50">
               blog |{" "}
@@ -102,31 +134,17 @@ function HomePage() {
               phone | 010-5578-4167
             </div>
           </div>
-          <ul className="list-inside justify-between explain opacity-0 text-stone-50 m-0 p-0 list-none z-10">
-            <li className="inline font-extrabold leading-24 lg:leading-35 text-6xl md:text-7xl lg:text-8xl tracking-[0.0524em]">
-              배움이 빠른
-            </li>
-            <li className="inline font-extrabold leading-24 lg:leading-35 text-6xl md:text-7xl lg:text-8xl tracking-[0.054em]">
-              {" "}
-              긍정적인
-            </li>
-            <li className="inline font-extrabold leading-24 lg:leading-35 text-6xl md:text-7xl lg:text-8xl tracking-[0.03em]">
-              {" "}
-              소통이 잘 되는
-            </li>
-            <li className="inline font-extrabold leading-24 lg:leading-35 text-6xl md:text-7xl lg:text-8xl tracking-[0.04em]">
-              {" "}
-              집중력이 높은
-            </li>
-            <li className="inline font-extrabold leading-24 lg:leading-35 text-6xl md:text-7xl lg:text-8xl tracking-[0.035em]">
-              {" "}
-              기록을 남기는
-            </li>
-            <li className="inline font-extrabold leading-24 lg:leading-35 text-6xl md:text-7xl lg:text-8xl tracking-[0.056em]">
-              {" "}
-              새로움에 관심이 많은
-            </li>
+          <ul className="list-inside justify-between explain opacity-0 text-stone-50 mx-auto mt-10 p-0 z-10 mb-50">
+            <li className={`${listStyling} custom-list tracking-[0.0764em]`}> 배움이 빠른</li>
+            <li className={`${listStyling} custom-list tracking-[0.0694em]`}> 긍정적인</li>
+            <li className={`${listStyling} custom-list tracking-[0.05em]`}> 소통이 잘 되는</li>
+            <li className={`${listStyling} custom-list tracking-[0.041em]`}> 집중력이 높은</li>
+            <li className={`${listStyling} custom-list tracking-[0.05em]`}> 기록을 남기는</li>
+            <li className={`${listStyling} custom-list tracking-[0.069em]`}> 새로움에 관심이 많은</li>
           </ul>
+          <div className="font-phudu border-b-4 pb-5 font-extrabold text-stone-50 text-6xl md:text-7xl lg:text-7xl">SKILLS</div>
+          <div className="font-phudu text-stone-50 text-6xl my-5 font-bold">FE</div>
+          <div className="font-phudu text-stone-50 text-6xl mb-5">JAVASCRIPT</div>
         </div>
       </div>
     </div>

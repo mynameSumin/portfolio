@@ -49,17 +49,25 @@ export const animateName = () => {
         opacity: [0, 0.7],
         duration: 1500,
         delay: 500,
-        complete: () => {
+        easing: 'easeOutElastic(1, .8)',
+        begin: () => {
             const element = document.querySelector(".h-screen")  as HTMLElement;
             if(element){
-                element.style.overflow = "auto";
+                element.classList.remove("overflow-hidden"); 
+                element.classList.add("overflow-scroll");
             }
         },
     })
 
     anime({
         targets: ".explain",
-        opacity: [0, 0.25],
+        opacity: [0, 1],
+        delay: 500
+    })
+
+    anime({
+        targets: ".custom-list",
+        opacity: [0, 0.15],
         delay: 500
     })
 

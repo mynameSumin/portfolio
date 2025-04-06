@@ -5,3 +5,8 @@
   opacity: 0.5;
   transform: translate(-50%, -50%);
 }
+
+#on {
+  color: #fff;
+  opacity: 1 !important;
+}
