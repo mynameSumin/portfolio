@@ -42,7 +42,7 @@ export const generateStars = (count: number): Stars[] => {
         translateX: finalX,
         translateY: finalY,
         delay: idx * 15,
-        opacity: 0.6,
+        opacity: 0.4,
         duration: 5000,
         scale: finalScale,
         easing: "easeOutElastic",

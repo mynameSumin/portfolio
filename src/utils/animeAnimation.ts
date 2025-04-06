@@ -1,11 +1,10 @@
 import anime from "animejs";
 
 //이름 함수
-export const animateName = (height: number) => {
+export const animateName = () => {
     anime({
       targets: ".name",
       scale: 5,
-      translateY: -height * 0.06,
       delay: 1000,
       duration: 3000,
       opacity: 1,
@@ -27,37 +26,70 @@ export const animateName = (height: number) => {
   };
 
   export const clickCharacter = (width: number) : any => {
+    let letterSpace = 0;
+    if(width < 365) letterSpace = 3;
+    else if(width < 600) letterSpace = 4;
+    else letterSpace = width * 0.0091;
     anime({
         targets: ".name",
-        letterSpacing: ["0px", `${width * 0.01}px`],
-        translateX: 6,
+        letterSpacing: ["0px", `${letterSpace}px`],
+        translateX: width < 600 ? 3 : 6,
         duration: 1500,
         easing: "easeInOutExpo"
     });
     anime({
         targets: ".image",
-        translateX: width * - 0.011,
+        translateX: width < 600? width * -0.012 : width * - 0.0105,
         duration: 1500,
         easing: "easeInOutExpo"
+    })
+
+    anime({
+        targets: ".info",
+        opacity: [0, 0.7],
+        duration: 1500,
+        delay: 500,
+        complete: () => {
+            const element = document.querySelector(".h-screen")  as HTMLElement;
+            if(element){
+                element.style.overflow = "auto";
+            }
+        },
+    })
+
+    anime({
+        targets: ".explain",
+        opacity: [0, 0.25],
+        delay: 500
+    })
+
+    anime({
+        targets: "header",
+        opacity: [0, 1],
+        delay: 500
     })
   }
 
   export const resizeLetterSpace = (width: number) : any => {
     const currentLetterSpacing = parseFloat(getComputedStyle(document.querySelector(".name")!).letterSpacing) || 0;
-    const newLetterSpacing = width * 0.008; // 기존 값에서 조금 줄어듦
+    let newLetterSpacing;
+    console.log(width);
+    if(width < 360) newLetterSpacing = 0
+    else if(width < 550) newLetterSpacing = width * 0.005;
+    else if(width < 1000)  newLetterSpacing = width * 0.011;
+    else newLetterSpacing = width * 0.008;
 
     anime({
         targets: ".name",
         letterSpacing: [`${currentLetterSpacing}px`, `${newLetterSpacing}px`],
-        translateX: 6,
         duration: 800,
         easing: "easeOutQuad"
     });
 
     anime({
         targets: ".image",
-        translateX: width * - 0.011,
+        translateX: width < 600? width * -0.012 : width * - 0.0105,
         easing: "easeOutQuad"
-    })
+    });
   }
   

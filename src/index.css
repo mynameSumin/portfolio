@@ -1,1 +1,8 @@
 @import 'tailwindcss';
+
+@theme {
+    --color-main: #0B3954;
+    --color-text: #087E8B;
+    --color-middletext: #BFD7EA;
+    --breakpoint-xs: 23rem;
+}
