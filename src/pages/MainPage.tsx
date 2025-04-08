@@ -75,7 +75,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="body bg-sky-950 h-screen z-0 overflow-hidden relative px-4 md:px-[7%] lg:px-[20%]">
+    <div className="body bg-sky-950 overflow-x-hidden h-screen z-0 overflow-hidden relative flex flex-col mx-auto">
       <header className="opacity-0 columns-3 mt-6 font-medium flex justify-between">
         <div className="text-2xl sm:text-3xl text-cyan-700">ABOUT ME</div>
         <div className="text-2xl sm:text-3xl text-cyan-700">PROJECTS</div>
@@ -94,7 +94,7 @@ function HomePage() {
           }
         />
       ))}
-      <div>
+      <div className="mx-auto lg:w-230">
         <div className="name h-40 flex justify-center items-center font-extrabold opacity-0 xs:font-medium">
           <div className="letter text-cyan-700 inline-block text-xs sm:text-base">
             MIN
@@ -116,7 +116,7 @@ function HomePage() {
           alt="Character"
         />
         <div className="min-h-100 pointer-events-none relative flex-col justify-center">
-          <div className="info-box text-right font-phudu mt-20 mb-60 pointer-events-none">
+          <div className="info-box text-right font-phudu mt-10 mb-70 pointer-events-none">
             <div className={`${infoStyling}`}>email | msm4167@naver.com</div>
             <div className={`${infoStyling}`}>
               <a href="https://github.com/mynameSumin" target="_blank">
@@ -131,7 +131,7 @@ function HomePage() {
             </div>
             <div className={`${infoStyling}`}>phone | 010-5578-4167</div>
           </div>
-          <ul className="list-inside justify-between explain opacity-0 text-stone-50 mx-auto mt-10 p-0 z-10 mb-50">
+          <ul className="explain opacity-0 text-stone-50 mt-10 p-0 mb-50 mx-4">
             <li className={`${listStyling} custom-list tracking-[0.0764em]`}>
               {" "}
               배움이 빠른
@@ -177,10 +177,10 @@ function HomePage() {
             </div>
             {/* <div className="font-phudu text-stone-50 text-7xl font-extrabold mb-10 mr-10 opacity-25 tracking-[0.069em] leading-23">CONTACT 공간으로<br/> 이동하기</div> */}
             <div className="info-box font-phudu mb-10 pointer-events-auto">
-              <div className="info leading-8 text-7xl sm:text-xl text-stone-50">
+              <div className="info leading-8 text-sm sm:text-xl text-stone-50">
                 email | msm4167@naver.com
               </div>
-              <div className="info leading-8 text-7xl sm:text-xl text-stone-50">
+              <div className="info leading-8 text-sm sm:text-xl text-stone-50">
                 <a href="https://github.com/mynameSumin" target="_blank">
                   github | mynamesumin
                 </a>

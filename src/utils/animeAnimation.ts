@@ -26,9 +26,9 @@ export const animateImage = () => {
 
 export const clickCharacter = (width: number): any => {
   let letterSpace = 0;
-  if (width < 365) letterSpace = 3;
+  if (width < 370) letterSpace = 0;
   else if (width < 600) letterSpace = 4;
-  else letterSpace = width * 0.0091;
+  else letterSpace = width * 0.0105;
   anime({
     targets: ".name",
     letterSpacing: ["0px", `${letterSpace}px`],
@@ -38,7 +38,7 @@ export const clickCharacter = (width: number): any => {
   });
   anime({
     targets: ".image",
-    translateX: width < 600 ? width * -0.012 : width * -0.0105,
+    translateX: width < 600 ? width < 370? width * -0.014: width * -0.012 : width * -0.0105,
     duration: 2000,
     easing: "easeInOutExpo"
   });
@@ -76,11 +76,11 @@ export const clickCharacter = (width: number): any => {
     delay: 1000,
   });
 
-  anime({
-    targets: "header",
-    opacity: [0, 1],
-    delay: 1000,
-  });
+  // anime({
+  //   targets: "header",
+  //   opacity: [0, 1],
+  //   delay: 1000,
+  // });
 
   anime({
     targets: ".click",
