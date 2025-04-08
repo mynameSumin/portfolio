@@ -116,7 +116,7 @@ function HomePage() {
           alt="Character"
         />
         <div className="min-h-100 pointer-events-none relative flex-col justify-center">
-          <div className="info-box text-right font-phudu mt-10 mb-70 pointer-events-none">
+          <div className="info-box text-right font-phudu px-5 mt-10 mb-70 pointer-events-none">
             <div className={`${infoStyling}`}>email | msm4167@naver.com</div>
             <div className={`${infoStyling}`}>
               <a href="https://github.com/mynameSumin" target="_blank">
@@ -164,7 +164,7 @@ function HomePage() {
             <div className="font-phudu text-stone-50 text-7xl my-10 font-extrabold">
               PROJECTS
             </div>
-            <div className="pointer-events-auto font-phudu text-stone-50 text-7xl font-extrabold mb-10 mr-10 tracking-[0.069em] leading-23 opacity-25 hover:opacity-100 transition-opacity duration-500">
+            <div className="pointer-events-auto font-phudu text-stone-50 text-4xl sm:text-7xl font-extrabold mb-10 mr-10 tracking-[0.069em] leading-23 opacity-100 sm:opacity-25 hover:opacity-100 transition-opacity duration-500">
               <a href="https://www.notion.so/16ef3b205f1e80079ce2e2f3faf613c4?v=f9b691cba218416abfec4a4555365c5b" target="_blank">
               프로젝트 공간으로
               <br /> 이동하기

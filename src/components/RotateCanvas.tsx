@@ -196,14 +196,14 @@ function RotateCanvas() {
 
   return (
     <div className="border-b-2 text-stone-50 pb-5">
-      <div className="font-phudu border-b-2 pb-5 font-extrabold text-stone-50 text-6xl md:text-7xl lg:text-7xl">
+      <div className="px-5 font-phudu border-b-2 pb-5 font-extrabold text-stone-50 text-6xl md:text-7xl lg:text-7xl">
         SKILLS
       </div>
-      <div className="font-phudu text-stone-50 text-6xl my-5 font-bold">FE</div>
-      <span className="font-phudu text-stone-50 text-6xl mb-5 mr-10">
+      <div className="font-phudu text-stone-50 text-6xl px-5 my-5 font-bold">FE</div>
+      <span className="font-phudu text-stone-50 ml-5 text-6xl mb-5 mr-10">
         {selectedItem.title}
       </span>
-      <span>
+      <span className="block md:inline pt-5 md:pt-0">
         {Array(5)
           .fill(null)
           .map((_, i) => {
@@ -220,12 +220,14 @@ function RotateCanvas() {
             );
           })}
       </span>
-      <canvas
-        ref={canvasRef}
-        className="rounded-full w-100 h-100 mt-12 justify-self-center pointer-events-auto"
-      ></canvas>
-      <div className="click font-phudu text-stone-50 text-sm my-5 justify-self-center">
-        CLICK OR DRAG IMAGE !
+      <div className="flex flex-col items-center">
+        <canvas
+          ref={canvasRef}
+          className="rounded-full w-100 h-100 mt-12 pointer-events-auto"
+        ></canvas>
+        <div className="click font-phudu text-stone-50 text-sm my-5">
+          CLICK OR DRAG IMAGE !
+        </div>
       </div>
     </div>
   );
