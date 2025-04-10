@@ -18,7 +18,7 @@ export const animateImage = () => {
     targets: ".image",
     scale: 20,
     delay: 1000,
-    duration: 2000,
+    duration: 3000,
     opacity: 1,
     easing: "easeOutElastic",
   });
