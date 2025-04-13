@@ -4,7 +4,7 @@ import anime from "animejs";
 export const animateName = () => {
   anime({
     targets: ".name",
-    scale: 5,
+    scale: [0, 5],
     delay: 1000,
     duration: 3000,
     opacity: 1,
@@ -16,15 +16,15 @@ export const animateName = () => {
 export const animateImage = () => {
   anime({
     targets: ".image",
-    scale: 20,
+    scale: [0.1, 1],
     delay: 1000,
     duration: 3000,
-    opacity: 1,
+    opacity: [0, 1],
     easing: "easeOutElastic",
   });
 };
 
-export const clickCharacter = (width: number): any => {
+export const clickCharacter = (width: number, imgWidth: number): any => {
   let letterSpace = 0;
   if (width < 370) letterSpace = 0;
   else if (width < 600) letterSpace = 4;
@@ -36,11 +36,18 @@ export const clickCharacter = (width: number): any => {
     duration: 2000,
     easing: "easeInOutExpo",
   });
+
   anime({
     targets: ".image",
-    translateX: width < 600 ? width < 370? width * -0.014: width * -0.012 : width * -0.0105,
+    translateX: [width * 0.5 - imgWidth * 0.5, 0],
     duration: 2000,
-    easing: "easeInOutExpo"
+    easing: "easeInOutExpo",
+    complete: () => {
+      const element = document.querySelector(".box") as HTMLElement;
+      if (element) {
+        element.classList.remove("items-center");
+      }
+    }
   });
 
   anime({

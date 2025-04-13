@@ -74,6 +74,17 @@ function HomePage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (isClicked) {
+      const parent = document.querySelector(".main-body") as HTMLElement;
+      const elem = document.querySelector(".image") as HTMLElement;
+  
+      if (parent && elem) {
+        clickCharacter(parent.clientWidth, elem.clientWidth);
+      }
+    }
+  }, [isClicked]); // isClicked가 true로 바뀌면 실행됨
+
   return (
     <div className="body bg-sky-950 overflow-x-hidden h-screen z-0 overflow-hidden relative flex flex-col mx-auto">
       <header className="opacity-0 columns-3 mt-6 font-medium flex justify-between">
@@ -94,8 +105,8 @@ function HomePage() {
           }
         />
       ))}
-      <div className="mx-auto lg:w-230">
-        <div className="name h-40 flex justify-center items-center font-extrabold opacity-0 xs:font-medium">
+      <div className="box mx-auto flex flex-col items-center lg:w-230 bg-amber-300">
+        <div className="name h-min my-20 flex justify-center items-center font-extrabold opacity-0 xs:font-medium">
           <div className="letter text-cyan-700 inline-block text-xs sm:text-base">
             MIN
           </div>
@@ -106,32 +117,49 @@ function HomePage() {
             MIN
           </div>
         </div>
-        <img
-          className="image pointer-events-auto absolute bottom-1/2 left-1/2 translate-x-1/2 translate-y-1/2  opacity-0 w-1/60 sm:w-1/60 md:w-1/70 lg:w-1/100 hover:scale-102"
-          onClick={() => {
-            clickCharacter(window.innerWidth);
-            setIsClicked(true);
-          }}
-          src={myCharacter}
-          alt="Character"
-        />
-        <div className="min-h-100 pointer-events-none relative flex-col justify-center">
-          <div className="info-box text-right font-phudu px-5 mt-10 mb-70 pointer-events-none">
-            <div className={`${infoStyling}`}>email | msm4167@naver.com</div>
-            <div className={`${infoStyling}`}>
-              <a href="https://github.com/mynameSumin" target="_blank">
-                github | mynamesumin
-              </a>
-            </div>
-            <div className={`${infoStyling}`}>
-              blog |{" "}
-              <a href="https://velog.io/@msm4167/posts" target="_blank">
-                https://velog.io/@msm4167/posts
-              </a>
-            </div>
-            <div className={`${infoStyling}`}>phone | 010-5578-4167</div>
+        <div className="main-body min-h-100 bg-amber-950 pointer-events-none flex-col items-center justify-center">
+          <div
+            className={`flex transition-all duration-700 ${
+              isClicked ? "flex-row justify-between" : "justify-center"
+            }`}
+          >
+            <img
+              className="image ml-10 pointer-events-auto size-1/4 justify-self-center hover:scale-102"
+              onClick={() => {
+                setIsClicked(true);
+              }}
+              src={myCharacter}
+              alt="Character"
+            />
+            {isClicked && (
+              <div className="info-box bg-amber-800 text-right font-phudu px-5 mt-10 mb-40 pointer-events-none">
+                <div className={`${infoStyling}`}>
+                  email | msm4167@naver.com
+                </div>
+                <div className={`${infoStyling}`}>
+                  <a
+                    href="https://github.com/mynameSumin"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    github | mynamesumin
+                  </a>
+                </div>
+                <div className={`${infoStyling}`}>
+                  blog |{" "}
+                  <a
+                    href="https://velog.io/@msm4167/posts"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    https://velog.io/@msm4167/posts
+                  </a>
+                </div>
+                <div className={`${infoStyling}`}>phone | 010-5578-4167</div>
+              </div>
+            )}
           </div>
-          <ul className="explain opacity-0 text-stone-50 mt-10 p-0 mb-50 mx-4">
+          <ul className="bg-amber-400 explain opacity-0 w-170 text-stone-50 mt-10 p-0 mb-50 mx-auto">
             <li className={`${listStyling} custom-list tracking-[0.0764em]`}>
               {" "}
               배움이 빠른
@@ -165,10 +193,13 @@ function HomePage() {
               PROJECTS
             </div>
             <div className="pointer-events-auto font-phudu text-stone-50 text-4xl sm:text-7xl font-extrabold mb-10 mr-10 tracking-[0.069em] leading-23 opacity-100 sm:opacity-25 hover:opacity-100 transition-opacity duration-500">
-              <a href="https://www.notion.so/16ef3b205f1e80079ce2e2f3faf613c4?v=f9b691cba218416abfec4a4555365c5b" target="_blank">
-              프로젝트 공간으로
-              <br /> 이동하기
-                </a>
+              <a
+                href="https://www.notion.so/16ef3b205f1e80079ce2e2f3faf613c4?v=f9b691cba218416abfec4a4555365c5b"
+                target="_blank"
+              >
+                프로젝트 공간으로
+                <br /> 이동하기
+              </a>
             </div>
           </section>
           <section className="px-5 border-b-2 text-stone-50 pb-5 mb-50">
