@@ -103,7 +103,7 @@ function HomePage() {
           }
         />
       ))}
-      <div className="box mx-auto flex flex-col items-center w-9/10 lg:w-230">
+      <div className="box mx-auto mt-20 flex flex-col items-center w-9/10 lg:w-230">
         <div className="name h-min my-20 flex justify-center items-center font-extrabold opacity-0">
           <div className="letter text-cyan-700 inline-block text-xs sm:text-base">
             MIN
