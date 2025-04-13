@@ -12,7 +12,7 @@ import RotateCanvas from "../components/RotateCanvas.tsx";
 
 function HomePage() {
   const listStyling =
-    "inline font-extrabold leading-25 md:leading-40 lg:leading-35 text-6xl sm:text-7xl  md:text-8xl tracking-[0.095em]";
+    "inline font-extrabold leading-25 md:leading-40 lg:leading-35 text-6xl sm:text-7xl  md:text-8xl tracking-[10px]";
   const infoStyling =
     "info leading-8 opacity-0 text-xs sm:text-xl text-stone-50";
   const stars = useMemo(() => generateStars(100), []); //별 생성
