@@ -26,20 +26,22 @@ export const animateImage = () => {
 
 export const clickCharacter = (width: number, imgWidth: number): any => {
   let letterSpace = 0;
-  if (width < 370) letterSpace = 0;
-  else if (width < 600) letterSpace = 4;
-  else letterSpace = width * 0.0105;
+  if (width <= 430) letterSpace = 1;
+  else if (width < 640) letterSpace = width * 0.0075;
+  else if (width < 700) letterSpace = width * 0.008;
+  else if (width < 880) letterSpace = width * 0.01;
+  else letterSpace = width * 0.014;
   anime({
     targets: ".name",
     letterSpacing: ["0px", `${letterSpace}px`],
-    translateX: width < 600 ? 3 : 6,
+    translateX: width > 800 ? 7 : 1, 
     duration: 2000,
     easing: "easeInOutExpo",
   });
 
   anime({
     targets: ".image",
-    translateX: [width * 0.5 - imgWidth * 0.5, 0],
+    translateX: [width * 0.5 - imgWidth * 0.5, 10],
     duration: 2000,
     easing: "easeInOutExpo",
     complete: () => {
@@ -105,21 +107,23 @@ export const resizeLetterSpace = (width: number): any => {
       getComputedStyle(document.querySelector(".name")!).letterSpacing
     ) || 0;
   let newLetterSpacing;
-  if (width < 360) newLetterSpacing = 0;
-  else if (width < 550) newLetterSpacing = width * 0.005;
-  else if (width < 1000) newLetterSpacing = width * 0.011;
-  else newLetterSpacing = width * 0.008;
+  if (width <= 430) newLetterSpacing = 2;
+  else if (width < 640) newLetterSpacing = width * 0.0075;
+  else if (width < 700) newLetterSpacing = width * 0.008;
+  else if (width < 880) newLetterSpacing = width * 0.01;
+  else newLetterSpacing = width * 0.014;
 
   anime({
     targets: ".name",
+    translateX: width > 800 ? 7 : 1,
     letterSpacing: [`${currentLetterSpacing}px`, `${newLetterSpacing}px`],
     duration: 800,
     easing: "easeOutQuad",
   });
 
-  anime({
-    targets: ".image",
-    translateX: width < 600 ? width * -0.012 : width * -0.0105,
-    easing: "easeOutQuad",
-  });
+  // anime({
+  //   targets: ".image",
+  //   translateX: width < 600 ? width * -0.012 : width * -0.0105,
+  //   easing: "easeOutQuad",
+  // });
 };

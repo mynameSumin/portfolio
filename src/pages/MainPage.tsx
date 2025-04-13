@@ -12,27 +12,36 @@ import RotateCanvas from "../components/RotateCanvas.tsx";
 
 function HomePage() {
   const listStyling =
-    "inline font-extrabold leading-26 lg:leading-35 text-6xl md:text-7xl lg:text-8xl";
+    "inline font-extrabold leading-25 md:leading-40 lg:leading-35 text-6xl sm:text-7xl  md:text-8xl tracking-[0.095em]";
   const infoStyling =
-    "info leading-8 opacity-0 text-sm sm:text-xl text-stone-50";
+    "info leading-8 opacity-0 text-xs sm:text-xl text-stone-50";
   const stars = useMemo(() => generateStars(100), []); //별 생성
 
   //resize 관련
   const isInitialRender = useRef(true);
   const [isClicked, setIsClicked] = useState(false);
   const handleResize = (): any => {
-    const width = window.innerWidth;
+    const width = document.querySelector(".main-body");
     if (isInitialRender.current) {
       isInitialRender.current = false;
       return;
     }
 
-    if (isClicked) {
-      resizeLetterSpace(width);
+    if (isClicked && width) {
+      resizeLetterSpace(width.clientWidth);
     }
   };
 
   useEffect(() => {
+    if (isClicked) {
+      const parent = document.querySelector(".main-body") as HTMLElement;
+      const elem = document.querySelector(".image") as HTMLElement;
+  
+      if (parent && elem) {
+        clickCharacter(parent.clientWidth, elem.clientWidth);
+      }
+    };
+
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -52,9 +61,9 @@ function HomePage() {
     const scrollY = body[0]?.scrollTop;
 
     if (startY && endY && scrollY) {
-      if (scrollY > startY / 4 && scrollY < endY - startY / 4) {
+      if (scrollY > startY && scrollY < endY - startY) {
         const length = (endY - startY) / listItem.length; //한 요소 당 스크롤 길이
-        const itemNum = Math.floor((scrollY - startY / 4) / length);
+        const itemNum = Math.floor((scrollY - startY) / length);
         listItem[itemNum].id = "on";
       }
     }
@@ -73,17 +82,6 @@ function HomePage() {
         ?.removeEventListener("scroll", changeTextColor);
     };
   }, []);
-
-  useEffect(() => {
-    if (isClicked) {
-      const parent = document.querySelector(".main-body") as HTMLElement;
-      const elem = document.querySelector(".image") as HTMLElement;
-  
-      if (parent && elem) {
-        clickCharacter(parent.clientWidth, elem.clientWidth);
-      }
-    }
-  }, [isClicked]); // isClicked가 true로 바뀌면 실행됨
 
   return (
     <div className="body bg-sky-950 overflow-x-hidden h-screen z-0 overflow-hidden relative flex flex-col mx-auto">
@@ -105,8 +103,8 @@ function HomePage() {
           }
         />
       ))}
-      <div className="box mx-auto flex flex-col items-center lg:w-230 bg-amber-300">
-        <div className="name h-min my-20 flex justify-center items-center font-extrabold opacity-0 xs:font-medium">
+      <div className="box mx-auto flex flex-col items-center w-9/10 lg:w-230">
+        <div className="name h-min my-20 flex justify-center items-center font-extrabold opacity-0">
           <div className="letter text-cyan-700 inline-block text-xs sm:text-base">
             MIN
           </div>
@@ -117,14 +115,14 @@ function HomePage() {
             MIN
           </div>
         </div>
-        <div className="main-body min-h-100 bg-amber-950 pointer-events-none flex-col items-center justify-center">
+        <div className="main-body min-h-100 pointer-events-none flex-col items-center justify-center">
           <div
-            className={`flex transition-all duration-700 ${
+            className={`flex ${
               isClicked ? "flex-row justify-between" : "justify-center"
             }`}
           >
             <img
-              className="image ml-10 pointer-events-auto size-1/4 justify-self-center hover:scale-102"
+              className="image pointer-events-auto size-1/4 hover:scale-102"
               onClick={() => {
                 setIsClicked(true);
               }}
@@ -132,7 +130,7 @@ function HomePage() {
               alt="Character"
             />
             {isClicked && (
-              <div className="info-box bg-amber-800 text-right font-phudu px-5 mt-10 mb-40 pointer-events-none">
+              <div className="info-box bg-sky-50-800 text-right font-phudu px-5 mb-30 pointer-events-none">
                 <div className={`${infoStyling}`}>
                   email | msm4167@naver.com
                 </div>
@@ -159,30 +157,30 @@ function HomePage() {
               </div>
             )}
           </div>
-          <ul className="bg-amber-400 explain opacity-0 w-170 text-stone-50 mt-10 p-0 mb-50 mx-auto">
-            <li className={`${listStyling} custom-list tracking-[0.0764em]`}>
+          <ul className="text-center explain opacity-0 w-full text-stone-50 mt-10 p-0 mb-50 mx-auto">
+            <li className={`${listStyling} custom-list`}>
               {" "}
-              배움이 빠른
+              배움이빠른
             </li>
-            <li className={`${listStyling} custom-list tracking-[0.0694em]`}>
+            <li className={`${listStyling} custom-list`}>
               {" "}
               긍정적인
             </li>
-            <li className={`${listStyling} custom-list tracking-[0.05em]`}>
+            <li className={`${listStyling} custom-list`}>
               {" "}
-              소통이 잘 되는
+              소통이잘되는
             </li>
-            <li className={`${listStyling} custom-list tracking-[0.041em]`}>
+            <li className={`${listStyling} custom-list`}>
               {" "}
-              집중력이 높은
+              집중력이높은
             </li>
-            <li className={`${listStyling} custom-list tracking-[0.05em]`}>
+            <li className={`${listStyling} custom-list`}>
               {" "}
-              기록을 남기는
+              기록을남기는
             </li>
-            <li className={`${listStyling} custom-list tracking-[0.069em]`}>
+            <li className={`${listStyling} custom-list`}>
               {" "}
-              새로움에 관심이 많은
+              새로움에 관심이많은
             </li>
           </ul>
           <section>
