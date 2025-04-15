@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Phudu:wght@300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -7,4 +9,6 @@
   --color-middletext: #bfd7ea;
   --breakpoint-xs: 23rem;
   --font-phudu: "Phudu", sans-serif;
+  --font-gothic: "Nanum Gothic Coding", monospace;
+  --font-monoKorea: "Noto Sans KR", sans-serif;
 }

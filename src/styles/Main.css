@@ -10,3 +10,7 @@
   color: #fff;
   opacity: 1 !important;
 }
+
+.body::-webkit-scrollbar {
+  display: none;
+}

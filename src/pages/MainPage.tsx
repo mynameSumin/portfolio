@@ -12,7 +12,7 @@ import RotateCanvas from "../components/RotateCanvas.tsx";
 
 function HomePage() {
   const listStyling =
-    "inline font-extrabold leading-25 md:leading-40 lg:leading-35 text-6xl sm:text-7xl  md:text-8xl tracking-[10px]";
+    "whitespace-pre-line inline font-extrabold font-monoKorea leading-25 md:leading-40 lg:leading-35 text-4xl sm:text-7xl  md:text-[100px] tracking-[3px] xl:tracking-[1.5px]";
   const infoStyling =
     "info leading-8 opacity-0 text-xs sm:text-xl text-stone-50";
   const stars = useMemo(() => generateStars(100), []); //별 생성
@@ -53,15 +53,16 @@ function HomePage() {
     if (document.getElementById("on"))
       document.getElementById("on")?.removeAttribute("id");
 
-    const ulElement = document.querySelector("ul");
-    const startY = ulElement?.getBoundingClientRect().top;
-    const endY = ulElement?.getBoundingClientRect().bottom;
-    const listItem = document.querySelectorAll(".custom-list");
     const body = document.getElementsByClassName("body");
     const scrollY = body[0]?.scrollTop;
 
+    const ulElement = document.querySelector("ul");
+    const startY = ulElement!.getBoundingClientRect().top + scrollY - 300;
+    const endY = ulElement!.getBoundingClientRect().bottom + scrollY - 400;
+    const listItem = document.querySelectorAll(".custom-list");
+
     if (startY && endY && scrollY) {
-      if (scrollY > startY && scrollY < endY - startY) {
+      if (scrollY > startY && scrollY < endY) {
         const length = (endY - startY) / listItem.length; //한 요소 당 스크롤 길이
         const itemNum = Math.floor((scrollY - startY) / length);
         listItem[itemNum].id = "on";
@@ -103,7 +104,7 @@ function HomePage() {
           }
         />
       ))}
-      <div className="box mx-auto mt-20 flex flex-col items-center w-9/10 lg:w-230">
+      <div className="box mx-auto mt-20 flex flex-col items-center w-9/10 lg:w-[920px]">
         <div className="name h-min my-20 flex justify-center items-center font-extrabold opacity-0">
           <div className="letter text-cyan-700 inline-block text-xs sm:text-base">
             MIN
@@ -157,9 +158,8 @@ function HomePage() {
               </div>
             )}
           </div>
-          <ul className="text-center explain opacity-0 w-full text-stone-50 mt-10 p-0 mb-50 mx-auto">
+          <ul className="text-center explain opacity-0 w-full text-stone-50 mt-10 px-0 mb-50 mx-auto">
             <li className={`${listStyling} custom-list`}>
-              {" "}
               배움이빠른
             </li>
             <li className={`${listStyling} custom-list`}>
@@ -167,26 +167,26 @@ function HomePage() {
               긍정적인
             </li>
             <li className={`${listStyling} custom-list`}>
-              {" "}
+            {" "}
               소통이잘되는
             </li>
             <li className={`${listStyling} custom-list`}>
-              {" "}
+            {" "}
               집중력이높은
             </li>
-            <li className={`${listStyling} custom-list`}>
-              {" "}
+            <li className={`${listStyling} custom-list`}> 
+            {" "}
               기록을남기는
             </li>
             <li className={`${listStyling} custom-list`}>
-              {" "}
+            {" "}
               새로움에 관심이많은
             </li>
           </ul>
           <section>
             <RotateCanvas />
           </section>
-          <section className="px-5 border-b-2 text-stone-50 pb-5">
+          <section className="pl-5 border-b-2 text-stone-50 pb-5">
             <div className="font-phudu text-stone-50 text-7xl my-10 font-extrabold">
               PROJECTS
             </div>
