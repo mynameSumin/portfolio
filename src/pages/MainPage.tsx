@@ -12,7 +12,7 @@ import RotateCanvas from "../components/RotateCanvas.tsx";
 
 function HomePage() {
   const listStyling =
-    "whitespace-pre-line inline font-extrabold font-monoKorea leading-25 md:leading-40 lg:leading-35 text-4xl sm:text-7xl  md:text-[100px] tracking-[3px] xl:tracking-[1.5px]";
+    "whitespace-pre-line inline font-extrabold font-monoKorea leading-25 md:leading-40 text-4xl sm:text-7xl  md:text-[100px] tracking-[3px] xl:tracking-[1.5px]";
   const infoStyling =
     "info leading-8 opacity-0 text-xs sm:text-xl text-stone-50";
   const stars = useMemo(() => generateStars(100), []); //별 생성
@@ -36,11 +36,11 @@ function HomePage() {
     if (isClicked) {
       const parent = document.querySelector(".main-body") as HTMLElement;
       const elem = document.querySelector(".image") as HTMLElement;
-  
+
       if (parent && elem) {
         clickCharacter(parent.clientWidth, elem.clientWidth);
       }
-    };
+    }
 
     window.addEventListener("resize", handleResize);
     return () => {
@@ -53,9 +53,7 @@ function HomePage() {
     if (document.getElementById("on"))
       document.getElementById("on")?.removeAttribute("id");
 
-    const body = document.getElementsByClassName("body");
-    const scrollY = body[0]?.scrollTop;
-
+    const scrollY = window.scrollY;
     const ulElement = document.querySelector("ul");
     const startY = ulElement!.getBoundingClientRect().top + scrollY - 300;
     const endY = ulElement!.getBoundingClientRect().bottom + scrollY - 400;
@@ -74,23 +72,21 @@ function HomePage() {
     animateStars(stars);
     animateName();
     animateImage();
-    document
-      .querySelector(".body")
-      ?.addEventListener("scroll", changeTextColor);
+    document.addEventListener("scroll", changeTextColor);
+
     return () => {
-      document
-        .querySelector(".body")
-        ?.removeEventListener("scroll", changeTextColor);
+      document?.removeEventListener("scroll", changeTextColor);
     };
   }, []);
 
   return (
-    <div className="body bg-sky-950 overflow-x-hidden h-screen z-0 overflow-hidden relative flex flex-col mx-auto">
-      <header className="opacity-0 columns-3 mt-6 font-medium flex justify-between">
-        <div className="text-2xl sm:text-3xl text-cyan-700">ABOUT ME</div>
-        <div className="text-2xl sm:text-3xl text-cyan-700">PROJECTS</div>
-        <div className="text-2xl sm:text-3xl text-cyan-700">CONTACT</div>
-      </header>
+    <div
+      className={`body overflow-x-hidden z-0 overflow-y-hidden relative flex flex-col mx-auto ${
+        isClicked
+          ? "h-full bg-gradient-to-b bg-[linear-gradient(to_bottom,_#082f49_75%,_#087E8B_100%)]"
+          : "h-screen bg-sky-950"
+      }`}
+    >
       {stars.map((star, idx) => (
         <div
           key={idx}
@@ -104,7 +100,12 @@ function HomePage() {
           }
         />
       ))}
-      <div className="box mx-auto mt-20 flex flex-col items-center w-9/10 lg:w-[920px]">
+      <div className="box mx-auto mt-10 flex flex-col items-center w-9/10 lg:w-[920px]">
+        <header className="opacity-0 columns-3 w-full px-5 mb-10 font-medium flex justify-between">
+          <div className="text-2xl sm:text-3xl text-cyan-700">ABOUT ME</div>
+          <div className="text-2xl sm:text-3xl text-cyan-700">PROJECTS</div>
+          <div className="text-2xl sm:text-3xl text-cyan-700">CONTACT</div>
+        </header>
         <div className="name h-min my-20 flex justify-center items-center font-extrabold opacity-0">
           <div className="letter text-cyan-700 inline-block text-xs sm:text-base">
             MIN
@@ -159,27 +160,13 @@ function HomePage() {
             )}
           </div>
           <ul className="text-center explain opacity-0 w-full text-stone-50 mt-10 px-0 mb-50 mx-auto">
-            <li className={`${listStyling} custom-list`}>
-              배움이빠른
-            </li>
+            <li className={`${listStyling} custom-list`}>배움이빠른</li>
+            <li className={`${listStyling} custom-list`}> 긍정적인</li>
+            <li className={`${listStyling} custom-list`}> 소통이잘되는</li>
+            <li className={`${listStyling} custom-list`}> 집중력이높은</li>
+            <li className={`${listStyling} custom-list`}> 기록을남기는</li>
             <li className={`${listStyling} custom-list`}>
               {" "}
-              긍정적인
-            </li>
-            <li className={`${listStyling} custom-list`}>
-            {" "}
-              소통이잘되는
-            </li>
-            <li className={`${listStyling} custom-list`}>
-            {" "}
-              집중력이높은
-            </li>
-            <li className={`${listStyling} custom-list`}> 
-            {" "}
-              기록을남기는
-            </li>
-            <li className={`${listStyling} custom-list`}>
-            {" "}
               새로움에 관심이많은
             </li>
           </ul>

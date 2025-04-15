@@ -169,6 +169,7 @@ function RotateCanvas() {
     initGround();
     initSkillBoxes();
     observerCanvas();
+
     Events.on(runner!, "tick", () => {
       gravityDeg += 1;
       engine.gravity.x = gravityPower * Math.cos((Math.PI / 180) * gravityDeg);

@@ -11,6 +11,6 @@
   opacity: 1 !important;
 }
 
-.body::-webkit-scrollbar {
+html::-webkit-scrollbar {
   display: none;
 }

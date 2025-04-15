@@ -59,10 +59,10 @@ export const clickCharacter = (width: number, imgWidth: number): any => {
     delay: 1000,
     easing: "easeOutElastic(1, .8)",
     begin: () => {
-      const element = document.querySelector(".h-screen") as HTMLElement;
+      const element = document.querySelector(".body") as HTMLElement;
       if (element) {
-        element.classList.remove("overflow-hidden");
-        element.classList.add("overflow-scroll");
+        element.classList.remove("overflow-y-hidden");
+        element.classList.add("overflow-y-scroll");
       }
 
       const info = document.querySelector(".info-box") as HTMLElement;
@@ -85,11 +85,11 @@ export const clickCharacter = (width: number, imgWidth: number): any => {
     delay: 1000,
   });
 
-  // anime({
-  //   targets: "header",
-  //   opacity: [0, 1],
-  //   delay: 1000,
-  // });
+  anime({
+    targets: "header",
+    opacity: [0, 1],
+    delay: 1000,
+  });
 
   anime({
     targets: ".click",
