@@ -1,16 +1,19 @@
 import "../styles/Main.css";
 import { useMemo, useEffect, useRef, useState } from "react";
 import { generateStars, animateStars } from "../utils/starAnimation";
+import { useNavigate } from "react-router-dom";
 import {
   animateName,
   animateImage,
   clickCharacter,
   resizeLetterSpace,
+  pageTrasition
 } from "../utils/animeAnimation";
 import myCharacter from "../assets/myCharacter.png";
 import RotateCanvas from "../components/RotateCanvas.tsx";
 
 function HomePage() {
+  const navigate = useNavigate();
   const listStyling =
     "whitespace-pre-line inline font-extrabold font-monoKorea leading-25 md:leading-40 text-4xl sm:text-7xl  md:text-[100px] tracking-[3px] xl:tracking-[1.5px]";
   const infoStyling =
@@ -102,9 +105,9 @@ function HomePage() {
       ))}
       <div className="box mx-auto mt-10 flex flex-col items-center w-9/10 lg:w-[920px]">
         <header className="opacity-0 columns-3 w-full px-5 mb-10 font-medium flex justify-between">
-          <div className="text-2xl sm:text-3xl text-cyan-700">ABOUT ME</div>
-          <div className="text-2xl sm:text-3xl text-cyan-700">PROJECTS</div>
-          <div className="text-2xl sm:text-3xl text-cyan-700">CONTACT</div>
+          <div className="text-2xl cursor-pointer sm:text-3xl text-white">ABOUT ME</div>
+          <div className="text-2xl cursor-pointer sm:text-3xl text-cyan-700" onClick={() => {pageTrasition(0, () => navigate("/project"))}}>PROJECTS</div>
+          <div className="text-2xl cursor-pointer sm:text-3xl text-cyan-700">CONTACT</div>
         </header>
         <div className="name h-min my-20 flex justify-center items-center font-extrabold opacity-0">
           <div className="letter text-cyan-700 inline-block text-xs sm:text-base">
@@ -177,14 +180,13 @@ function HomePage() {
             <div className="font-phudu text-stone-50 text-7xl my-10 font-extrabold">
               PROJECTS
             </div>
-            <div className="pointer-events-auto font-phudu text-stone-50 text-4xl sm:text-7xl font-extrabold mb-10 mr-10 tracking-[0.069em] leading-23 opacity-100 sm:opacity-25 hover:opacity-100 transition-opacity duration-500">
-              <a
-                href="https://www.notion.so/16ef3b205f1e80079ce2e2f3faf613c4?v=f9b691cba218416abfec4a4555365c5b"
-                target="_blank"
-              >
+            <div className="pointer-events-auto cursor-pointer font-phudu text-stone-50 text-4xl sm:text-7xl font-extrabold mb-10 mr-10 tracking-[0.069em] leading-23 opacity-100 sm:opacity-25 hover:opacity-100 transition-opacity duration-500"
+            onClick={(e) => {
+              pageTrasition(e.clientY, () => navigate("/project"));
+            }}
+            >
                 프로젝트 공간으로
                 <br /> 이동하기
-              </a>
             </div>
           </section>
           <section className="px-5 border-b-2 text-stone-50 pb-5 mb-50">
@@ -214,6 +216,8 @@ function HomePage() {
           </section>
         </div>
       </div>
+      <div className="move-box-up w-screen h-screen bg-black z-1 fixed translate-y-[100%]"></div>
+      <div className="move-box-down w-screen h-screen bg-black z-1 fixed -translate-y-[100%]"></div>
     </div>
   );
 }

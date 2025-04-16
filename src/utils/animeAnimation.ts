@@ -24,6 +24,7 @@ export const animateImage = () => {
   });
 };
 
+//캐릭터 클릭 시 애니메이션
 export const clickCharacter = (width: number, imgWidth: number): any => {
   let letterSpace = 0;
   if (width <= 430) letterSpace = 1;
@@ -101,6 +102,7 @@ export const clickCharacter = (width: number, imgWidth: number): any => {
   });
 };
 
+//화면 사이즈 변경 시 반응형 애니매이션
 export const resizeLetterSpace = (width: number): any => {
   const currentLetterSpacing =
     parseFloat(
@@ -127,3 +129,20 @@ export const resizeLetterSpace = (width: number): any => {
   //   easing: "easeOutQuad",
   // });
 };
+
+export const pageTrasition = (height: number, navigate: () => void): void => {
+  anime({
+    targets: ".move-box-up",
+    translateY: - window.innerHeight + height,
+    duration: 2000,
+    easing: "easeInOutExpo",
+  })
+
+  anime({
+    targets: ".move-box-down",
+    translateY: height,
+    duration: 2000,
+    easing: "easeInOutExpo",
+    complete: navigate
+  })
+}
