@@ -92,6 +92,10 @@ function RotateCanvas() {
       });
 
       Composite.add(engine.world, mouseConstraint);
+
+      //스크롤 안되는 현상 해결
+      const mouseWithSource = mouse as any;
+      canvas.removeEventListener("wheel", mouseWithSource.mousewheel);
     };
 
     const initGround = () => {
@@ -169,7 +173,7 @@ function RotateCanvas() {
     initGround();
     initSkillBoxes();
     observerCanvas();
-
+    
     Events.on(runner!, "tick", () => {
       gravityDeg += 1;
       engine.gravity.x = gravityPower * Math.cos((Math.PI / 180) * gravityDeg);

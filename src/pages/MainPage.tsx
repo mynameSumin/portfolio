@@ -55,7 +55,7 @@ function HomePage() {
 
     const scrollY = window.scrollY;
     const ulElement = document.querySelector("ul");
-    const startY = ulElement!.getBoundingClientRect().top + scrollY - 300;
+    const startY = ulElement!.getBoundingClientRect().top + scrollY - 400;
     const endY = ulElement!.getBoundingClientRect().bottom + scrollY - 400;
     const listItem = document.querySelectorAll(".custom-list");
 
