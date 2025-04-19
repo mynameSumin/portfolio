@@ -1,4 +1,4 @@
-import "../styles/Main.css";
+import "../styles/Main.css";
 import { useMemo, useEffect, useRef, useState } from "react";
 import { generateStars, animateStars } from "../utils/starAnimation";
 import { useNavigate } from "react-router-dom";
@@ -7,10 +7,11 @@ import {
   animateImage,
   clickCharacter,
   resizeLetterSpace,
-  pageTrasition
+  pageTrasition,
 } from "../utils/animeAnimation";
 import myCharacter from "../assets/myCharacter.png";
 import RotateCanvas from "../components/RotateCanvas.tsx";
+import { playAudio, stopAudio, fadeOutAudio } from "../utils/audio.ts";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -44,10 +45,12 @@ function HomePage() {
         clickCharacter(parent.clientWidth, elem.clientWidth);
       }
     }
-
+    
+    if(isClicked) playAudio("src/assets/mainPage.mp3");
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
+      stopAudio();
     };
   }, [isClicked]);
 
@@ -105,9 +108,21 @@ function HomePage() {
       ))}
       <div className="box mx-auto mt-10 flex flex-col items-center w-9/10 lg:w-[920px]">
         <header className="opacity-0 columns-3 w-full px-5 mb-10 font-medium flex justify-between">
-          <div className="text-2xl cursor-pointer sm:text-3xl text-white">ABOUT ME</div>
-          <div className="text-2xl cursor-pointer sm:text-3xl text-cyan-700" onClick={() => {pageTrasition(0, () => navigate("/project"))}}>PROJECTS</div>
-          <div className="text-2xl cursor-pointer sm:text-3xl text-cyan-700">CONTACT</div>
+          <div className="text-2xl cursor-pointer sm:text-3xl text-white">
+            ABOUT ME
+          </div>
+          <div
+            className="text-2xl cursor-pointer sm:text-3xl text-cyan-700 hover:text-white transition-all duration-500"
+            onClick={() => {
+              // fadeOutAudio(1000);
+                pageTrasition(0, () => navigate("/project"));
+            }}
+          >
+            PROJECTS
+          </div>
+          <div className="text-2xl cursor-pointer sm:text-3xl text-cyan-700 hover:text-white transition-all duration-500">
+            CONTACT
+          </div>
         </header>
         <div className="name h-min my-20 flex justify-center items-center font-extrabold opacity-0">
           <div className="letter text-cyan-700 inline-block text-xs sm:text-base">
@@ -180,13 +195,15 @@ function HomePage() {
             <div className="font-phudu text-stone-50 text-7xl my-10 font-extrabold">
               PROJECTS
             </div>
-            <div className="pointer-events-auto cursor-pointer font-phudu text-stone-50 text-4xl sm:text-7xl font-extrabold mb-10 mr-10 tracking-[0.069em] leading-23 opacity-100 sm:opacity-25 hover:opacity-100 transition-opacity duration-500"
-            onClick={(e) => {
-              pageTrasition(e.clientY, () => navigate("/project"));
-            }}
+            <div
+              className="pointer-events-auto cursor-pointer font-phudu text-stone-50 text-4xl sm:text-7xl font-extrabold mb-10 mr-10 tracking-[0.069em] leading-23 opacity-100 sm:opacity-25 hover:opacity-100 transition-opacity duration-500"
+              onClick={(e) => {
+                playAudio("src/assets/portfolioPage.mp3");
+                pageTrasition(e.clientY, () => navigate("/project"));
+              }}
             >
-                프로젝트 공간으로
-                <br /> 이동하기
+              프로젝트 공간으로
+              <br /> 이동하기
             </div>
           </section>
           <section className="px-5 border-b-2 text-stone-50 pb-5 mb-50">
