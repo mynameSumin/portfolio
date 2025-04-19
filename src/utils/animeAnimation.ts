@@ -134,14 +134,14 @@ export const pageTrasition = (height: number, navigate: () => void): void => {
   anime({
     targets: ".move-box-up",
     translateY: - window.innerHeight + height,
-    duration: 2000,
+    duration: 2500,
     easing: "easeInOutExpo",
   })
 
   anime({
     targets: ".move-box-down",
     translateY: height,
-    duration: 2000,
+    duration: 2500,
     easing: "easeInOutExpo",
     complete: navigate
   })

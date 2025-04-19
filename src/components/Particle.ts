@@ -12,7 +12,7 @@ export default class Particle {
     opacity: number;
 
     constructor() {
-        this.r = 20; //반지름
+        this.r = 15; //반지름
         this.rFriction = randomNumBetween(0.99, 1);
         this.rRandom = randomNumBetween(0, 5);
 
@@ -36,7 +36,7 @@ export default class Particle {
 
     draw(ctx: CanvasRenderingContext2D) {
         ctx.beginPath();
-        ctx.arc(this.x, this.y, randomNumBetween(0.8, 1.5), 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, 1, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
         ctx.fill();
         ctx.closePath();
