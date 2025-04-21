@@ -11,7 +11,7 @@ import {
 } from "../utils/animeAnimation";
 import myCharacter from "../assets/myCharacter.png";
 import RotateCanvas from "../components/RotateCanvas.tsx";
-import { playAudio, stopAudio, fadeOutAudio } from "../utils/audio.ts";
+import { playAudio, stopAudio } from "../utils/audio.ts";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -195,7 +195,9 @@ function HomePage() {
             <div className="font-phudu text-stone-50 text-7xl my-10 font-extrabold">
               PROJECTS
             </div>
-            <div
+            {
+              innerWidth > 430 ? (
+                <div
               className="pointer-events-auto cursor-pointer font-phudu text-stone-50 text-4xl sm:text-7xl font-extrabold mb-10 mr-10 tracking-[0.069em] leading-23 opacity-100 sm:opacity-25 hover:opacity-100 transition-opacity duration-500"
               onClick={(e) => {
                 playAudio("src/assets/portfolioPage.mp3");
@@ -205,6 +207,15 @@ function HomePage() {
               프로젝트 공간으로
               <br /> 이동하기
             </div>
+              ) : (
+                <div className="pointer-events-auto font-phudu text-stone-50 text-7xl font-extrabold mb-10 mr-10 tracking-[0.069em] leading-23 opacity-25 hover:opacity-100 transition-opacity duration-500">
+               <a href="https://www.notion.so/16ef3b205f1e80079ce2e2f3faf613c4?v=f9b691cba218416abfec4a4555365c5b" target="_blank">
+               프로젝트 공간으로
+               <br /> 이동하기
+                 </a>
+             </div>
+              )
+            }
           </section>
           <section className="px-5 border-b-2 text-stone-50 pb-5 mb-50">
             <div className="font-phudu text-stone-50 text-7xl my-10 font-extrabold">
