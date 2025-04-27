@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { playAudio, stopAudio } from "../utils/audio";
 import MediplanPage from "./MediplanPage";
 import PortfolioPage from "./PortfolioPage";
+import DangilPage from "./DangilPage";
 
 function ProjectPage() {
   const navigate = useNavigate();
@@ -114,7 +115,8 @@ function ProjectPage() {
                     {
                       idx == 0 ? <PortfolioPage/> :
                       idx == 1 ? <MediplanPage/> :
-                      <MediplanPage />
+                      idx == 2 ? <DangilPage/> :
+                      <MediplanPage/>
                     }
                   </div>
                   <div
