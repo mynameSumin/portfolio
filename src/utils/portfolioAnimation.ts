@@ -1,4 +1,4 @@
-import anime, { easings, set } from "animejs";
+import anime from "animejs";
 
 export const startPage = () => {
     anime({
@@ -12,7 +12,7 @@ export const startPage = () => {
         targets: ".planet",
         opacity: [0, 0.6],
         duration: 900,
-        delay: 1000,
+        delay: 800,
         easing: "easeInOutSine"
     })
 }
@@ -22,8 +22,12 @@ export const zoominPlanet = (x: number, y: number, id: number) => {
         targets: `.planet-${id}`,
         translateX: {
             value: innerWidth/2 - x,
-            delay: 500,
-            duration: 500,
+            duration: 300,
+            easing: "linear",
+        },
+        translateY: {
+            value: innerHeight/2 - y,
+            duration: 300,
             easing: "linear",
         },
         backgroundColor: "rgba(0, 0, 0, 1)",
@@ -32,36 +36,22 @@ export const zoominPlanet = (x: number, y: number, id: number) => {
             duration : 1000,
             easings: 'easeInOutSine'
         },
-        borderWidth: {
-            value: [0, 1],
-            duration : 1000,
-            easings: 'easeInOutSine'
-        },
-        borderColor: {
-            value: "white",
-        },
         borderRadius: {
-            value: 3,
-            duration: 1000,
-            easing: "linear"
-        },
-        translateY: {
-            value: innerHeight/2 - y + 50,
-            delay: 500,
+            value: ["50%", "1%"],
             duration: 500,
-            easing: "easeOutBack",
+            easing: "linear"
         },
         width: {
             value: innerWidth / 9 * 8,
-            delay: 500,
-            duration: 1000,
-            easing: "easeOutBack",
+            delay: 300,
+            duration: 500,
+            easing: "linear",
         },
         height: {
-            value: innerHeight / 4 * 3,
-            delay: 500,
-            duration: 1000,
-            easing: "easeOutBack",
+            value: innerHeight / 8 * 7,
+            delay: 300,
+            duration: 500,
+            easing: "linear",
         },
         duration: 1500,
         begin: () => {
@@ -77,26 +67,45 @@ export const zoominPlanet = (x: number, y: number, id: number) => {
     })
 
     anime({
-        targets: ".name",
-        opacity: [0.2, 1],
-        duration: 500,
+        targets: `.name-${id}`,
+        translateY: innerHeight * - 0.005,
+        opacity: [0.5, 0],
+        duration: 1000,
+        scale: [1, 2],
     })
 
     anime({
-        targets: ".planet-body",
-        opacity: [0, 0.3],
-        duration: 500,
+        targets: `.planet-body-${id}`,
+        borderRadius: 20,
+        opacity: [0, 1],
+        duration: 1000,
         easing: "linear",
         delay: 1000
     })
+
+    anime({
+        targets: `header`,
+        opacity: [1, 0],
+        easing: "linear",
+        duration: 500,
+        begin: () => {
+            document.querySelector("header")!.style.pointerEvents = "none";
+        }
+    })
 }
 
-export const zoomoutPlanet = (x: number, y: number, id: number) => {
+export const zoomoutPlanet = (id: number) => {
     anime({
         targets: `.planet-${id}`,
         translateX: {
             value: 0 ,
-            delay: 500,
+            delay: 300,
+            duration: 500,
+            easing: "linear",
+        },
+        translateY: {
+            value: 0,
+            delay: 300,
             duration: 500,
             easing: "linear",
         },
@@ -106,36 +115,20 @@ export const zoomoutPlanet = (x: number, y: number, id: number) => {
             duration : 1000,
             easings: 'easeInOutSine'
         },
-        borderWidth: {
-            value: [1, 0],
-            duration : 1000,
-            easings: 'easeInOutSine'
-        },
-        borderColor: {
-            value: "white",
-        },
         borderRadius: {
             value: "50%",
-            duration: 1000,
-            easing: "linear"
-        },
-        translateY: {
-            value: 0,
-            delay: 500,
             duration: 500,
-            easing: "easeOutBack",
+            easing: "linear"
         },
         width: {
             value: 30,
-            delay: 500,
-            duration: 1000,
-            easing: "easeOutBack",
+            duration: 300,
+            easing: "linear",
         },
         height: {
             value: 30,
-            delay: 500,
-            duration: 1000,
-            easing: "easeOutBack",
+            duration: 300,
+            easing: "linear",
         },
         duration: 1500,
          complete: () => {
@@ -151,16 +144,42 @@ export const zoomoutPlanet = (x: number, y: number, id: number) => {
     })
 
     anime({
-        targets: ".name",
-        opacity: [0.5, 1],
+        targets: `.name-${id}`,
+        opacity: [0, 0.5],
         duration: 500,
+        scale: [3, 1]
     })
 
     anime({
-        targets: ".planet-body",
-        opacity: [0.3, 0],
+        targets: `.planet-body-${id}`,
+        opacity: [1, 0],
         duration: 500,
         easing: "linear",
-        delay: 1000
+    })
+
+    anime({
+        targets: `header`,
+        opacity: [0, 1],
+        easing: "linear",
+        duration: 500,
+        begin: () => {
+            document.querySelector("header")!.style.pointerEvents = "auto";
+        }
+    })
+}
+
+export const explainModal = (id:number) => {
+    anime({
+        targets: `.explain-${id}`,
+        opacity: [0,1],
+        duration: 500,
+        easing: "easeInOutSine"
+    })
+
+    anime({
+        targets: `.arrow-${id}`,
+        rotate: 90,
+        duration: 500,
+        easing: "easeInOutSine"
     })
 }
