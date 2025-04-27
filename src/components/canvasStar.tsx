@@ -6,7 +6,7 @@ const CanvasStar = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = window.devicePixelRatio;
   const interval: number = 1000 / 60;
-  const particles: Particle[] = [];
+  let particles: Particle[] = [];
   const planets: Planet[] = [];
   let canvasWidth: number;
   let canvasHeight: number;
@@ -50,7 +50,7 @@ const CanvasStar = () => {
   };
 
   const createParticles = (): void => {
-    const PARTICLE_NUM = 450;
+    const PARTICLE_NUM = 350;
     for (let i = 0; i < PARTICLE_NUM; i++) {
       particles.push(new Particle());
     }
@@ -109,6 +109,10 @@ const CanvasStar = () => {
         p.draw(ctx!);
       });
 
+      particles = particles.filter(
+        (p) => !(p.x < 0 || p.x > screen.width || p.y < 0 || p.y > screen.height)
+      );
+
       drawBackground(ctx);
 
       then = now - (delta % interval);
@@ -132,6 +136,10 @@ const CanvasStar = () => {
   
     window.addEventListener("resize", () => {
       const newLocations = getPlanetLocation();
+       particles.forEach((p) => {
+        p.update();
+        p.draw(ctx!);
+      });
       init(canvas, ctx);
       createPlanet(newLocations);
     });
