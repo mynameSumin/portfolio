@@ -12,7 +12,7 @@ import { useState } from "react";
 
 function MediplanPage() {
   const imgList = [img1, img2, img3, img4, img5, img6, img7];
-  const [modal, setModal] = useState([false, false]);
+  const [modal, setModal] = useState([false, false, false]);
   const openModal = (i: number) => {
     let copy = [...modal];
 
@@ -100,7 +100,7 @@ function MediplanPage() {
               감안하여 자체 회원가입 기능을 구현했습니다.
             </div>
             <div className="font-bold">- 카카오 로그인</div>
-            <div className="mx-3">
+            <div className="mx-3 font-bold text-[#4A43BF]">
               기존의 웹뷰 기반 카카오 로그인을 네이티브 SDK 연동 방식으로
               전환함으로써,
             </div>
@@ -255,7 +255,7 @@ function MediplanPage() {
           </div>
         </div>
         <div className="">
-          * 현재는 하드웨어 기기 완성이 되지 않아 연동 기능은 없는 상태입니다.
+          * 현재는 하드웨어 기기 완성이 되지 않아 출시가 미뤄진 상태입니다.
         </div>
       </div>
     </div>
