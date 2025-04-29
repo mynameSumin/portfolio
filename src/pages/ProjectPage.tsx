@@ -10,6 +10,7 @@ import { playAudio, stopAudio } from "../utils/audio";
 import MediplanPage from "./MediplanPage";
 import PortfolioPage from "./PortfolioPage";
 import DangilPage from "./DangilPage";
+import OnlstudiesPage from "./OnlstudiesPage";
 
 function ProjectPage() {
   const navigate = useNavigate();
@@ -116,7 +117,7 @@ function ProjectPage() {
                       idx == 0 ? <PortfolioPage/> :
                       idx == 1 ? <MediplanPage/> :
                       idx == 2 ? <DangilPage/> :
-                      <MediplanPage/>
+                      <OnlstudiesPage/>
                     }
                   </div>
                   <div

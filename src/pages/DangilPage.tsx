@@ -69,7 +69,7 @@ function DangilPage() {
         <div className="text-4xl text-[#4D3591] font-extrabold font-phudu mb-5">
           3. Function
         </div>
-        <div className="relative explain-0 flex flex-col py-5 px-5 rounded-md w-full bg-[#F4F5F8] mb-2 gap-2">
+        <div className="relative explain-0 flex flex-col py-5 px-5 rounded-md w-full bg-[#F4F5F8] mb-4 gap-2">
           <div className="font-bold">- 친구 추가 기능</div>
           <div className="mx-4 mb-3 ml-3">
             상대방의 고유 번호 또는 이름을 사용하여 사용자를 검색하고 친구를
@@ -286,7 +286,7 @@ function DangilPage() {
           </div>
         )}
         <div className="text-4xl mt-10 text-[#4D3591] font-extrabold font-phudu mb-5">
-          4. procedure
+          5. cooperation
         </div>
         <div className="relative explain-0 flex flex-col py-5 px-5 rounded-md w-full bg-[#F4F5F8] mt-2 mb-2 gap-2">
           <div className="mb-1 font-bold text-xl">
