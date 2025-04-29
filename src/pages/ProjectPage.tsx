@@ -40,6 +40,7 @@ function ProjectPage() {
     ];
   };
   const [planetLocation, setPlanetLocation] = useState(getPlanetLocation());
+  
 
   useEffect(() => {
     startPage();
@@ -53,6 +54,17 @@ function ProjectPage() {
       stopAudio();
     };
   }, []);
+
+  useEffect(() => {
+    if (clickPlanet && planetId !== -1) {
+      const timer = setTimeout(() => {
+        zoominPlanet(planetLocation[planetId].x, planetLocation[planetId].y, planetId);
+      }, 500);
+  
+      // (만약 planetLocation이 바뀌면 이전 timeout을 취소)
+      return () => clearTimeout(timer);
+    }
+  }, [planetLocation]);
   return (
     <div
       className="w-screen h-screen overflow-hidden bg-black"

@@ -22,6 +22,24 @@ export const animateImage = () => {
     opacity: [0, 1],
     easing: "easeOutElastic",
   });
+
+  anime({
+    targets: ".alert",
+    opacity: [0, 1],
+    easing: "linear",
+    duration: 1000,
+    delay: 2000,
+    complete: () => {
+      anime({
+        targets: ".alert",
+        translateY: [-5, 5], 
+        direction: "alternate",
+        loop: true, // 무한 반복
+        easing: "easeInOutSine",
+        duration: 1000,
+      });
+    }
+  })
 };
 
 //캐릭터 클릭 시 애니메이션
@@ -73,6 +91,12 @@ export const clickCharacter = (width: number, imgWidth: number): any => {
       }
     },
   });
+
+  anime({
+    targets: ".alert",
+    opacity: [1, 0],
+    duration: 500  
+  })
 
   anime({
     targets: ".explain",
