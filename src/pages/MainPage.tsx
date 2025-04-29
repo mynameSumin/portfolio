@@ -46,7 +46,6 @@ function HomePage() {
       }
     }
     
-    if(isClicked) playAudio("src/assets/mainPage.mp3");
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -144,12 +143,14 @@ function HomePage() {
             <img
               className="image pointer-events-auto size-1/4 hover:scale-102"
               onClick={() => {
-                setIsClicked(true);
+                playAudio("src/assets/mainPage.mp3");
+                setIsClicked(true); 
               }}
+      
               src={myCharacter}
               alt="Character"
             />
-            <div className="alert opacity-0 fixed top-[70%] left-1/2 -translate-x-1/2 text-white/50">캐릭터 클릭 시 음향이 재생되니 주의해주세요</div>
+            <div className="alert opacity-0 fixed top-5 right-0 -translate-x-5 text-white/50">캐릭터 클릭 시 음향이 재생되니 주의해주세요</div>
             {isClicked && (
               <div className="info-box bg-sky-50-800 text-right font-phudu px-5 mb-30 pointer-events-none">
                 <div className={`${infoStyling}`}>

@@ -7,7 +7,7 @@ import img6 from "../assets/bgImage/mediplan/6.png";
 import img7 from "../assets/bgImage/mediplan/7.png";
 import rule1 from "../assets/bgImage/mediplan/rule1.png";
 import rule2 from "../assets/bgImage/mediplan/rule2.png";
-import { explainModal } from "../utils/portfolioAnimation";
+// import { explainModal } from "../utils/portfolioAnimation";
 import { useState } from "react";
 
 function MediplanPage() {

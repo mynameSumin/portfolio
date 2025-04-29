@@ -1,7 +1,5 @@
 import anime from "animejs";
 
-let isAnimating = false;
-
 export const startPage = () => {
     anime({
         targets: "header",
@@ -20,13 +18,6 @@ export const startPage = () => {
 }
 
 export const zoominPlanet = (x: number, y: number, id: number) => {
-    if (isAnimating) {
-        // 이미 다른 애니메이션 실행 중이면 무시
-        return;
-      }
-    
-      isAnimating = true;
-    
     anime({
         targets: `.planet-${id}`,
         translateX: {
@@ -73,9 +64,6 @@ export const zoominPlanet = (x: number, y: number, id: number) => {
             const planet = document.querySelector(`.planet-${id}`);
             planet?.classList.add("z-1"); 
         },
-        complete: () => {
-            isAnimating = false;
-        }
     })
 
     anime({
@@ -107,11 +95,6 @@ export const zoominPlanet = (x: number, y: number, id: number) => {
 }
 
 export const zoomoutPlanet = (id: number) => {
-    if (isAnimating) {
-        return;
-      }
-
-      isAnimating = true;
 
     anime({
         targets: `.planet-${id}`,
@@ -158,7 +141,6 @@ export const zoomoutPlanet = (id: number) => {
 
             const planet = document.querySelector(`.planet-${id}`);
             planet?.classList.remove("z-1"); 
-            isAnimating = false;
          }
     })
 
@@ -188,11 +170,6 @@ export const zoomoutPlanet = (id: number) => {
 }
 
 export const explainModal = (id:number) => {
-    if (isAnimating) {
-        return;
-      }
-
-      isAnimating = true;
 
     anime({
         targets: `.explain-${id}`,
@@ -206,8 +183,5 @@ export const explainModal = (id:number) => {
         rotate: 90,
         duration: 500,
         easing: "easeInOutSine",
-        complete: () => {
-            isAnimating = false;
-        }
     })
 }

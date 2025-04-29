@@ -1,4 +1,4 @@
-import { explainModal } from "../utils/portfolioAnimation";
+// import { explainModal } from "../utils/portfolioAnimation";
 import { useState } from "react";
 
 function OnlstudiesPage() {
