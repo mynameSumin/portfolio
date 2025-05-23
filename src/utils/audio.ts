@@ -10,9 +10,9 @@ export const playAudio = (src: string) => {
       console.warn('pause error', e);
     }
     globalAudio.src = src;
-    globalAudio.load(); // src 바꾼 후 명시적으로 load
   }
 
+  globalAudio.load(); // src 바꾼 후 명시적으로 load
   globalAudio.currentTime = 0;
 
   // canplaythrough 이벤트로 play 타이밍 잡기

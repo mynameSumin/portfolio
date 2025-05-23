@@ -132,7 +132,7 @@ export const zoomoutPlanet = (id: number) => {
             easing: "linear",
         },
         duration: 1500,
-         complete: () => {
+         begin: () => {
             const planets = document.querySelectorAll(".planet");
             planets.forEach((planet) => {
                 planet.classList.add("hover:scale-150");

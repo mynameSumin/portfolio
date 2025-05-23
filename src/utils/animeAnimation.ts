@@ -28,7 +28,7 @@ export const animateImage = () => {
     opacity: [0, 1],
     easing: "linear",
     duration: 1000,
-    delay: 2000,
+    delay: 500,
     complete: () => {
       anime({
         targets: ".alert",

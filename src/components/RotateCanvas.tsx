@@ -20,12 +20,12 @@ import React from "../assets/React.png";
 function RotateCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const data: Record<string, { title: string; level: number }> = {
-    JS: { title: "JAVASCRIPT", level: 4 },
+    JS: { title: "JAVASCRIPT", level: 5 },
     CSS3: { title: "CSS3", level: 5 },
     HTML5: { title: "HTML5", level: 5 },
     REACT: { title: "REACT", level: 4 },
-    TYPESCRIPT: { title: "TYPESCRIPT", level: 2 },
-    TAILWIND: { title: "TAILWIND", level: 3 },
+    TYPESCRIPT: { title: "TYPESCRIPT", level: 3 },
+    TAILWIND: { title: "TAILWIND", level: 5 },
     THREEJS: { title: "THREE.JS", level: 1 },
   };
   const [selectedItem, setSelectedItem] = useState(data["JS"]);
@@ -173,7 +173,7 @@ function RotateCanvas() {
     initGround();
     initSkillBoxes();
     observerCanvas();
-    
+
     Events.on(runner!, "tick", () => {
       gravityDeg += 1;
       engine.gravity.x = gravityPower * Math.cos((Math.PI / 180) * gravityDeg);
@@ -201,10 +201,22 @@ function RotateCanvas() {
 
   return (
     <div className="border-b-2 text-stone-50 pb-5">
-      <div className="px-5 font-phudu border-b-2 pb-5 font-extrabold text-stone-50 text-6xl md:text-7xl lg:text-7xl">
-        SKILLS
+      <div className="px-5 font-phudu border-b-2 pb-5">
+        <div className="flex flex-row justify-between">
+          <div className="font-extrabold text-stone-50 text-6xl md:text-7xl lg:text-7xl">SKILLS</div>
+        <div className="justify-self-end font-light font-gothic text-white/60">
+        1칸: 간단한 사용 경험이 있습니다
+        <br />
+        3칸: 기본적인 사용과 응용이 가능합니다
+        <br />
+        5칸: 자유롭게 활용하여 원하는 기능을 구현할 수 있습니다
       </div>
-      <div className="font-phudu text-stone-50 text-6xl px-5 my-5 font-bold">FE</div>
+        </div>
+      </div>
+      
+      <div className="block font-phudu text-stone-50 text-6xl px-5 my-5 font-bold">
+        FE
+      </div>
       <span className="font-phudu text-stone-50 ml-5 text-6xl mb-5 mr-10">
         {selectedItem.title}
       </span>

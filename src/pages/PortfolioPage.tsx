@@ -83,11 +83,62 @@ function portfolioPage() {
         >
           <div className="arrow-0 font-medium text-sky-950 text-xl">▶</div>
           <div className="font-monoKorea font-medium text-sky-950 text-xl">
-            애니메이션 최적화
+            다양한 라이브러리를 이용한 애니메이션 구현
           </div>
         </div>
         {modal[0] && (
           <div className="relative explain-0 flex flex-col py-5 px-5 rounded-md w-full bg-[#F4F5F8] mt-2 gap-2">
+            <div>
+              사용자가 포트폴리오에서 이탈하는 주된 원인은 '지루함'과 '정보
+              과잉'이라는 가설을 세웠습니다.
+            </div>
+            <div className="mb-4">
+              이를 해결하기 위해{" "}
+              <span className="font-bold">
+                시각적으로 역동적이되, 과하지 않은 인터랙션이 몰입감을 높인다
+              </span>
+              는 판단을 했습니다.
+            </div>
+            <div>
+              사용자가 화면의 흐름과 상호작용을 통해 자연스럽게 몰입할 수 있도록
+              설계했습니다.
+            </div>
+            <div>
+              이를 위해 anime.js와 TailwindCSS를 조합하여 부드럽고 세련된 화면
+              전환 애니메이션을 구현했으며,
+            </div>
+            <div className="mb-4">
+              작은 동작 하나에도 일관성 있는 반응을 주어 사용자 경험을 끊김 없이
+              이어가고자 했습니다.
+            </div>
+            <div>
+              또한 Canvas와 Matter.js를 활용해 사용자의 클릭이나 움직임에 따라
+              물리적 반응이 일어나는 인터랙션을 구현함으로써,
+            </div>
+            <div className="mb-4 font-bold">
+              화면을 단순히 보는 것을 넘어 '직접 조작하고 경험하는 공간'으로
+              만들었습니다.
+            </div>
+          </div>
+        )}
+        <div
+          className="flex flex-row py-2 px-4 rounded-md w-full bg-cyan-700/10 mt-5 items-center gap-2 cursor-pointer"
+          onClick={() => {
+            openModal(1);
+            // explainModal(1);
+          }}
+        >
+          <div className="font-medium text-sky-950 text-xl">▶</div>
+          <div className="font-monoKorea font-medium text-sky-950 text-xl">
+            애니메이션 최적화
+          </div>
+        </div>
+        {modal[1] && (
+          <div className="relative explain-0 flex flex-col py-5 px-5 rounded-md w-full bg-[#F4F5F8] mt-2 gap-2">
+            <div className="mb-4">
+              많은 인터렉션은 몰입감을 줄 수 있지만, 성능 저하로 인해 사이트
+              이탈로 이어질 수 있다는 우려가 생겨 다음과 같이 해결하였습니다.
+            </div>
             <div className="font-bold">- 별 렌더링 애니메이션 최적화</div>
             <div className="mx-4">
               프로젝트 페이지에서는 Canvas를 활용하여 다수의 별을 렌더링하는
@@ -144,42 +195,6 @@ function portfolioPage() {
         <div
           className="flex flex-row py-2 px-4 rounded-md w-full bg-cyan-700/10 mt-5 items-center gap-2 cursor-pointer"
           onClick={() => {
-            openModal(1);
-            // explainModal(1);
-          }}
-        >
-          <div className="font-medium text-sky-950 text-xl">▶</div>
-          <div className="font-monoKorea font-medium text-sky-950 text-xl">
-            다양한 라이브러리를 이용한 애니메이션 구현
-          </div>
-        </div>
-        {modal[1] && (
-          <div className="relative explain-0 flex flex-col py-5 px-5 rounded-md w-full bg-[#F4F5F8] mt-2 gap-2">
-            <div className="mb-4">
-              사용자가 화면의 흐름과 상호작용을 통해 자연스럽게 몰입할 수 있도록
-              설계했습니다.
-            </div>
-            <div className="mb-4">
-              이를 위해 anime.js와 TailwindCSS를 조합하여 부드럽고 세련된 화면
-              전환 애니메이션을 구현했으며,
-            </div>
-            <div className="mb-4">
-              작은 동작 하나에도 일관성 있는 반응을 주어 사용자 경험을 끊김 없이
-              이어가고자 했습니다.
-            </div>
-            <div className="mb-4">
-              또한 Canvas와 Matter.js를 활용해 사용자의 클릭이나 움직임에 따라
-              물리적 반응이 일어나는 인터랙션을 구현함으로써,
-            </div>
-            <div className="mb-4 font-bold">
-              화면을 단순히 보는 것을 넘어 '직접 조작하고 경험하는 공간'으로
-              만들었습니다.
-            </div>
-          </div>
-        )}
-        <div
-          className="flex flex-row py-2 px-4 rounded-md w-full bg-cyan-700/10 mt-5 items-center gap-2 cursor-pointer"
-          onClick={() => {
             openModal(2);
             // explainModal(2);
           }}
@@ -195,7 +210,7 @@ function portfolioPage() {
               포트폴리오를 접하는 사용자가 어떤 디바이스를 사용하더라도 불편함
               없이 경험할 수 있어야 한다고 생각했습니다.
             </div>
-            <div className="mb-4">
+            <div>
               이를 위해 사용자가 어떤 디바이스를 이용하든 일관된 경험을 제공하기
               위해 CSS 라이브러리를 비교 분석했고,
             </div>
@@ -256,7 +271,7 @@ function portfolioPage() {
             </a>
 
             <a
-              href="https://velog.io/@msm4167/tailwind%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EA%B7%B8%EB%9D%BC%EB%8D%94%EC%9D%B4%EC%85%98-%ED%9A%A8%EA%B3%BC-%EB%84%A3%EA%B8%B0"
+              href="https://velog.io/@msm4167/tailwind%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EA%B7%B8%EB%9D%BC%EB%8D%B0%EC%9D%B4%EC%85%98-%ED%9A%A8%EA%B3%BC-%EB%84%A3%EA%B8%B0"
               target="_blank"
               className="py-3 font-medium text-white w-full px-3 rounded-md bg-[#4D4B5BCC] hover:bg-[#6b6a7acc] transition-colors duration-300"
             >
@@ -267,7 +282,7 @@ function portfolioPage() {
               href="https://velog.io/@msm4167/react-ts-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C-matter.js-canvas-%EC%98%81%EC%97%AD-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%95%88%EB%90%A8-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95"
               target="_blank"
               className="py-3 font-medium text-white w-full px-3 rounded-md bg-[#4D4B5BCC] hover:bg-[#6b6a7acc] transition-colors duration-300"
-         >
+            >
               react + ts 환경에서 matter.js + canvas 영역 스크롤 안됨 해결 방법
             </a>
           </div>
