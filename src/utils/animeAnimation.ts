@@ -77,7 +77,7 @@ export const clickCharacter = (width: number, imgWidth: number): any => {
     duration: 1500,
     delay: 1000,
     easing: "easeOutElastic(1, .8)",
-    begin: () => {
+    end: () => {
       const element = document.querySelector(".body") as HTMLElement;
       if (element) {
         element.classList.remove("overflow-y-hidden");
