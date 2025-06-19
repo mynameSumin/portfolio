@@ -88,9 +88,9 @@ function HomePage() {
 
   return (
     <div
-      className={`body overflow-x-hidden z-0 overflow-y-hidden relative flex flex-col mx-auto ${
+      className={`body overflow-x-hidden z-0 overflow-y-hidden relative flex flex-col mx-0 ${
         isClicked
-          ? "h-full bg-gradient-to-b bg-[linear-gradient(to_bottom,_#082f49_75%,_#087E8B_100%)]"
+          ? "w-screen h-full bg-gradient-to-b bg-[linear-gradient(to_bottom,_#082f49_75%,_#087E8B_100%)]"
           : "h-screen bg-sky-950"
       }`}
     >
@@ -131,7 +131,11 @@ function HomePage() {
               </a>
             </div>
           )}
-          <div className="text-xl cursor-pointer sm:text-3xl text-cyan-700 hover:text-white transition-all duration-500">
+          <div className="text-xl cursor-pointer sm:text-3xl text-cyan-700 hover:text-white transition-all duration-500"
+          onClick={() => {
+            navigate("/contact");
+          }}
+          >
             CONTACT
           </div>
         </header>
