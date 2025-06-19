@@ -94,7 +94,12 @@ function RotateCanvas() {
       Composite.add(engine.world, mouseConstraint);
 
       //스크롤 안되는 현상 해결
-      const mouseWithSource = mouse as any;
+      // 예: 타입을 확장하여 `mousewheel`을 포함
+      interface ExtendedMouse {
+        mousewheel: (event: WheelEvent) => void;
+      }
+
+      const mouseWithSource = mouse as unknown as ExtendedMouse;
       canvas.removeEventListener("wheel", mouseWithSource.mousewheel);
     };
 
@@ -118,7 +123,7 @@ function RotateCanvas() {
       y: number,
       width: number,
       height: number,
-      options: {} = {}
+      options: object = {}
     ) => {
       const box = Bodies.rectangle(x, y, width, height, options);
       Composite.add(engine.world, box);
@@ -203,17 +208,19 @@ function RotateCanvas() {
     <div className="border-b-2 text-stone-50 pb-5">
       <div className="px-5 font-phudu border-b-2 pb-5">
         <div className="flex flex-row justify-between">
-          <div className="font-extrabold text-stone-50 text-6xl md:text-7xl lg:text-7xl">SKILLS</div>
-        <div className="justify-self-end font-light font-gothic text-white/60">
-        1칸: 간단한 사용 경험이 있습니다
-        <br />
-        3칸: 기본적인 사용과 응용이 가능합니다
-        <br />
-        5칸: 자유롭게 활용하여 원하는 기능을 구현할 수 있습니다
-      </div>
+          <div className="font-extrabold text-stone-50 text-6xl md:text-7xl lg:text-7xl">
+            SKILLS
+          </div>
+          <div className="justify-self-end font-light font-gothic text-white/60">
+            1칸: 간단한 사용 경험이 있습니다
+            <br />
+            3칸: 기본적인 사용과 응용이 가능합니다
+            <br />
+            5칸: 자유롭게 활용하여 원하는 기능을 구현할 수 있습니다
+          </div>
         </div>
       </div>
-      
+
       <div className="block font-phudu text-stone-50 text-6xl px-5 my-5 font-bold">
         FE
       </div>
@@ -224,7 +231,7 @@ function RotateCanvas() {
         {Array(5)
           .fill(null)
           .map((_, i) => {
-            let color = selectedItem.level <= i ? 1 : 0;
+            const color = selectedItem.level <= i ? 1 : 0;
             return (
               <span
                 key={i}
