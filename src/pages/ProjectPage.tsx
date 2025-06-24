@@ -15,6 +15,7 @@ import OnlstudiesPage from "./OnlstudiesPage";
 function ProjectPage() {
   const navigate = useNavigate();
   const [clickPlanet, setClickPlanet] = useState(false);
+  const [fisrtClick, setFirstClick] = useState(true);
   const [planetId, setPlanetId] = useState(-1);
   const getPlanetLocation = () => {
     return [
@@ -44,7 +45,6 @@ function ProjectPage() {
 
   useEffect(() => {
     startPage();
-    playAudio("src/assets/portfolioPage.mp3");
 
     const handleResize = () => setPlanetLocation(getPlanetLocation());
     window.addEventListener("resize", handleResize);
@@ -91,9 +91,9 @@ function ProjectPage() {
         </div>
         <div
           className="text-2xl sm:text-3xl text-neutral-800 cursor-pointer hover:text-neutral-400 transition-all duration-500"
-          onClick={() => stopAudio()}
+          onClick={() => navigate('/contact')}
         >
-          STOP MUSIC
+          CONTACT
         </div>
       </header>
       <CanvasStar />
@@ -107,6 +107,12 @@ function ProjectPage() {
                   key={idx}
                   onClick={(e) => {
                     e.stopPropagation();
+
+                    if(fisrtClick){
+                      playAudio("src/assets/portfolioPage.mp3");
+                      setFirstClick(false);
+                    }
+                    
                     if (!clickPlanet) {
                       //현재 클릭이 안된 상태라면
                       const nextState = !clickPlanet; //클릭된 상태로 바꾸기
