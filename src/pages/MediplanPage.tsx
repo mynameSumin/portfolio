@@ -14,7 +14,7 @@ function MediplanPage() {
   const imgList = [img1, img2, img3, img4, img5, img6, img7];
   const [modal, setModal] = useState([false, false, false]);
   const openModal = (i: number) => {
-    let copy = [...modal];
+    const copy = [...modal];
 
     if (modal[i] == false) {
       copy[i] = true;

@@ -26,7 +26,7 @@ function HomePage() {
   //resize 관련
   const isInitialRender = useRef(true);
   const [isClicked, setIsClicked] = useState(false);
-  const handleResize = (): any => {
+  const handleResize = (): unknown => {
     const width = document.querySelector(".main-body");
     if (isInitialRender.current) {
       isInitialRender.current = false;

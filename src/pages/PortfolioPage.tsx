@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-function portfolioPage() {
+function PortfolioPage() {
   const [modal, setModal] = useState([false, false, false, false]);
   const openModal = (i: number) => {
-    let copy = [...modal];
+    const copy = [...modal];
 
     if (modal[i] == false) {
       copy[i] = true;
@@ -319,4 +319,4 @@ function portfolioPage() {
   );
 }
 
-export default portfolioPage;
+export default PortfolioPage;
