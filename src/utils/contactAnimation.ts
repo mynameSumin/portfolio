@@ -7,7 +7,7 @@ export const startAnimation = () => {
         opacity: [0, 1],
         translateY: [-3, 0],
         loop: true,
-        delay: function(el, i) {
+        delay: function(_el, i) {
             return i * 200 + 400;
         }
     })
