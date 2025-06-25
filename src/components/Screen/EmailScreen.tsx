@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { sendEmail } from "../../utils/sendEmail";
 
 export default function EmailScreen({ setView }: { setView: (view: "main" | "form" | "thanks") => void }) {
   const [name, setName] = useState("");
@@ -43,7 +44,7 @@ export default function EmailScreen({ setView }: { setView: (view: "main" | "for
     };
   }, [dragging]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (name.length < 1) {
       setError("이름을 1자 이상 입력해주세요.");
       return;
@@ -60,11 +61,18 @@ export default function EmailScreen({ setView }: { setView: (view: "main" | "for
     }
 
     // 여기서 전송 처리
-    alert("메일이 성공적으로 전송되었습니다.");
-    setName("");
-    setEmail("");
-    setMessage("");
-    setError("");
+    try {
+      const messageFull = name + " " + email + " " + message;
+      await sendEmail(email, messageFull);
+      alert("메일이 성공적으로 전송되었습니다.");
+      setName("");
+      setEmail("");
+      setMessage("");
+      setError("");
+    } catch (error) {
+      alert("이메일 전송 중 오류 발생");
+      console.log(error);
+    }
   };
 
   return (
