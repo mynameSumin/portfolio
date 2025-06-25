@@ -13,6 +13,7 @@ import DeskModel from "../components/Screen/DeskModel";
 export default function ContactPage() {
   const navigate = useNavigate();
   const [focusScreen, setFocusScreen] = useState(false);
+  const [light, setLight] = useState(true);
   const screenRef = useRef<THREE.Mesh>(null);
   const standPositionRef = useRef<THREE.Vector3 | null>(null);
   const lightRef = useRef<THREE.SpotLight>(null);
@@ -20,6 +21,7 @@ export default function ContactPage() {
 
   const handleFocusScreen = () => setFocusScreen(true);
   const handleFocusOut = () => setFocusScreen(false);
+  const handleLight = () => setLight(!light);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -69,7 +71,7 @@ export default function ContactPage() {
 
       <Canvas
         shadows
-        camera={{ position: [-3, 2, 3.5], fov: 30 }}
+        camera={{ position: [-1.5, 1.2, 2.5], fov: 30 }}
         className="w-screen h-screen"
         onCreated={({ gl }) => {
           gl.shadowMap.enabled = true;
@@ -97,7 +99,7 @@ export default function ContactPage() {
         <primitive object={targetRef.current} />
         <spotLight
           ref={lightRef}
-          intensity={3}
+          intensity={light ? 3 : 0}
           angle={Math.PI / 3}
           penumbra={0.6}
           decay={1}
@@ -125,6 +127,7 @@ export default function ContactPage() {
             standPositionRef={standPositionRef}
             lightRef={lightRef}
             targetRef={targetRef}
+            handleLight={handleLight}
           />
 
           <ScreenOverlay screenRef={screenRef} focus={focusScreen} />

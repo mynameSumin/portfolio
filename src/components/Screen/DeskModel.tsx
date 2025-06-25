@@ -9,6 +9,7 @@ export default function DeskModel({
     standPositionRef,
     lightRef,
     targetRef,
+    handleLight
   }: {
     onClickScreen: () => void;
     handleFocusOut: () => void;
@@ -16,6 +17,7 @@ export default function DeskModel({
     standPositionRef: React.MutableRefObject<THREE.Vector3 | null>;
     lightRef: RefObject<THREE.SpotLight | null>;
     targetRef: React.MutableRefObject<THREE.Object3D>;
+    handleLight: () => void;
   }) {
     const { scene } = useGLTF("assets/3dModels/desk.glb");
     
@@ -64,6 +66,10 @@ export default function DeskModel({
             THREE.Object3DEventMap
           >;
         }) => {
+          if (e.object.name.toLowerCase().includes("stand")) {
+            handleLight();
+          }
+
           if ((e.object as THREE.Mesh).userData.clickable) {
             e.stopPropagation();
             onClickScreen();

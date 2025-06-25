@@ -11,8 +11,8 @@ export default function CameraController({ focus }: { focus: boolean }) {
   const [endRotate, setEndRotate] = useState(-1);
 
   const [{ camPosition, camTarget }, api] = useSpring(() => ({
-    camPosition: [-2, 1.8, 3.5],
-    camTarget: [-0.4, 1.15, -3.2],
+    camPosition: [-2, 1.2, 2.5],
+    camTarget: [-0.6, 0.8, -4.9],
     config: { mass: 1, tension: 80, friction: 20 },
   }));
 
@@ -20,13 +20,13 @@ export default function CameraController({ focus }: { focus: boolean }) {
   useEffect(() => {
     if (focus) {
       api.start({
-        camPosition: [-0.1, 1.3, 1.3],
+        camPosition: [-0.1, 1, 1.3],
         camTarget: [-2.4, 0.25, -6.5],
       });
     } else {
       api.start({
-        camPosition: [-2, 1.8, 2],
-        camTarget: [-0.4, 1.15, - 3.3],
+        camPosition: [-2, 1.2, 2.5],
+        camTarget: [-0.6, 0.8, - 5],
         onStart: () => setAnimating(true),
         onRest: () => setAnimating(false),
       });
@@ -92,9 +92,9 @@ export default function CameraController({ focus }: { focus: boolean }) {
       dampingFactor={0.1}
       minPolarAngle={Math.PI / 3}
       maxPolarAngle={Math.PI / 2.3}
-      minAzimuthAngle={- Math.PI / 9}
-      maxAzimuthAngle={Math.PI / 10}
-      minDistance={1}
+      minAzimuthAngle={- Math.PI / 12}
+      maxAzimuthAngle={Math.PI / 12}
+      minDistance={3}
       maxDistance={window.innerWidth <= 500 ? 8 : window.innerWidth >= 1500 ? 5 : 5}
     />
   );
