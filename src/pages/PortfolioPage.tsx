@@ -70,6 +70,12 @@ function PortfolioPage() {
           <div className="text-xl text-sky-950 font-medium font-phudu mb-10 py-1 px-2 bg-cyan-700/10 rounded-sm border-2">
             anime.js
           </div>
+          <div className="text-xl text-sky-950 font-medium font-phudu mb-10 py-1 px-2 bg-cyan-700/10 rounded-sm border-2">
+            Three.js
+          </div>
+          <div className="text-xl text-sky-950 font-medium font-phudu mb-10 py-1 px-2 bg-cyan-700/10 rounded-sm border-2">
+            Blender
+          </div>
         </div>
         <div className="text-4xl text-sky-950 font-extrabold font-phudu mb-5">
           3. What I did
@@ -112,7 +118,7 @@ function PortfolioPage() {
               이어가고자 했습니다.
             </div>
             <div>
-              또한 Canvas와 Matter.js를 활용해 사용자의 클릭이나 움직임에 따라
+              또한 Canvas와 Matter.js, Three.js, Blender를 활용해 사용자의 클릭이나 움직임에 따라
               물리적 반응이 일어나는 인터랙션을 구현함으로써,
             </div>
             <div className="mb-4 font-bold">
@@ -168,6 +174,30 @@ function PortfolioPage() {
               있도록 개선했습니다.
             </div>
 
+            <div className="font-bold mt-5">- Three.js 렌더링 최적화</div>
+            <div className="mx-4">
+              Contact 페이지에서 three.js와 블렌더를 사용해 3D 공간을
+              구현하였습니다.
+            </div>
+            <div className="mx-4">
+              그러나 3D 모델(.glb)의 로딩 지연으로 인해 Canvas 컴포넌트
+              렌더링까지 화면 공백이 발생하는 문제를 발견하였습니다.
+            </div>
+            <div className="mx-4">
+              이를 해결하기 위해{" "}
+              <span className="font-bold">
+                React의 "Suspense"와 fallback UI를 도입
+              </span>{" "}
+              하여 로딩 시간이 긴 3D 모델을 비동기 방식으로 처리하였습니다.
+            </div>
+            <div className="mx-4">
+            이로써 LCP를 약 3초, Speed Index는 약 5.6초 단축시켜 체감 성능을 크게 개선했습니다.
+            </div>
+            <div className="mx-4 mb-3">
+              또힌 로딩 중에는 클릭 시 사라지는 UI를 통해 사용자에게는 즉각적인
+              피드백을 제공하고, 로딩 대기 시간을 인지하지 못하도록 자연스럽게
+              전환되는 경험을 구현하였습니다.
+            </div>
             <div className="font-bold mt-5">- Matter.js 렌더링 최적화</div>
             <div className="mx-4">
               메인 페이지에서 Matter.js를 사용해 skill을 소개하는 2D 물리 기반
