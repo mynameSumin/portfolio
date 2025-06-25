@@ -129,7 +129,7 @@ function ProjectPage() {
                   }}
                 >
                   <div
-                    className={`overflow-scroll planet-body planet-body-${idx} bg-fixed z-2 opacity-0 w-full h-full bg-no-repeat bg-cover bg-center absolute bg-white`}
+                    className={`scrollbar-hide overflow-scroll planet-body planet-body-${idx} bg-fixed z-2 opacity-0 w-full h-full bg-no-repeat bg-cover bg-center absolute bg-white`}
                   >
                     {
                       idx == 0 ? <PortfolioPage/> :
