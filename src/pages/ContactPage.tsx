@@ -1,84 +1,14 @@
 // ContactPage.tsx
 import { Canvas } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
+import { Html, useGLTF } from "@react-three/drei";
 import { useNavigate } from "react-router-dom";
-import { RefObject, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import CameraController from "../utils/threejs/renderer";
 import ScreenOverlay from "../components/Screen/ScreenOverlay";
-
-function DeskModel({
-  onClickScreen,
-  handleFocusOut,
-  screenRef,
-  standPositionRef,
-  lightRef,
-  targetRef,
-}: {
-  onClickScreen: () => void;
-  handleFocusOut: () => void;
-  screenRef: React.RefObject<THREE.Mesh | null>;
-  standPositionRef: React.MutableRefObject<THREE.Vector3 | null>;
-  lightRef: RefObject<THREE.SpotLight | null>;
-  targetRef: React.MutableRefObject<THREE.Object3D>;
-}) {
-  const { scene } = useGLTF("assets/3dModels/desk.glb");
-
-  useEffect(() => {
-    scene.traverse((child) => {
-      if ((child as THREE.Mesh).isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-
-        if (child.name.toLowerCase().includes("screen")) {
-          screenRef.current = child as THREE.Mesh;
-        }
-
-        if (child.name.toLowerCase().includes("stand")) {
-          const stand = child as THREE.Mesh;
-          const pos = new THREE.Vector3();
-          stand.getWorldPosition(pos);
-          standPositionRef.current = pos;
-
-          if (lightRef.current) {
-            lightRef.current.position.set(pos.x, pos.y, pos.z);
-            targetRef.current.position.set(pos.x - 1.9, pos.y - 1, pos.z + 0.8);
-            lightRef.current.target = targetRef.current;
-          }
-        }
-      }
-    });
-  }, [scene]);
-
-  useEffect(() => {
-    if (screenRef.current) {
-      screenRef.current.userData.clickable = true;
-    }
-  }, []);
-
-  return (
-    <primitive
-      object={scene}
-      scale={[0.2, 0.2, 0.2]}
-      position={[0, 0, 0]}
-      onClick={(e: {
-        stopPropagation(): unknown;
-        object: THREE.Mesh<
-          THREE.BufferGeometry<THREE.NormalBufferAttributes>,
-          THREE.Material | THREE.Material[],
-          THREE.Object3DEventMap
-        >;
-      }) => {
-        if ((e.object as THREE.Mesh).userData.clickable) {
-          e.stopPropagation();
-          onClickScreen();
-        } else {
-          handleFocusOut();
-        }
-      }}
-    />
-  );
-}
+import { startAnimation } from "../utils/contactAnimation";
+import { playAudio } from "../utils/audio";
+import DeskModel from "../components/Screen/DeskModel";
 
 export default function ContactPage() {
   const navigate = useNavigate();
@@ -91,18 +21,44 @@ export default function ContactPage() {
   const handleFocusScreen = () => setFocusScreen(true);
   const handleFocusOut = () => setFocusScreen(false);
 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio("src/assets/screen/ContactBGM.mp3");
+    audioRef.current.volume = 1;
+    audioRef.current.loop = true;
+
+    return () => {
+      audioRef.current?.pause();
+      audioRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    startAnimation();
+  }, []);
+
   return (
     <div className="w-screen h-screen bg-amber-800/90">
+      <BeforeStart audioRef={audioRef} />
       <header className="fixed -translate-x-1/2 left-1/2 z-111 mt-10 w-9/10 lg:w-[920px] mx-auto columns-3 px-5 mb-10 font-medium flex justify-between">
         <div
           className="text-xl cursor-pointer sm:text-3xl text-black hover:text-white transition-all duration-500"
-          onClick={() => navigate("/")}
+          onClick={() => {
+            audioRef.current?.pause();
+            audioRef.current!.currentTime = 0;
+            navigate("/");
+          }}
         >
           ABOUT ME
         </div>
         <div
           className="text-xl cursor-pointer sm:text-3xl text-black hover:text-white transition-all duration-500"
-          onClick={() => navigate("/project")}
+          onClick={() => {
+            audioRef.current?.pause();
+            audioRef.current!.currentTime = 0;
+            navigate("/project");
+          }}
         >
           PROJECTS
         </div>
@@ -117,6 +73,7 @@ export default function ContactPage() {
         className="w-screen h-screen"
         onCreated={({ gl }) => {
           gl.shadowMap.enabled = true;
+
           gl.shadowMap.type = THREE.PCFSoftShadowMap;
         }}
         onPointerMissed={(e: MouseEvent) => {
@@ -152,18 +109,80 @@ export default function ContactPage() {
         />
 
         <CameraController focus={focusScreen} />
-        <DeskModel
-          onClickScreen={handleFocusScreen}
-          handleFocusOut={handleFocusOut}
-          screenRef={screenRef}
-          standPositionRef={standPositionRef}
-          lightRef={lightRef}
-          targetRef={targetRef}
-        />
-        <ScreenOverlay screenRef={screenRef} focus={focusScreen} />
+        <Suspense
+          fallback={
+            <Html center>
+              <div className="w-screen h-screen bg-black fixed top-0 left-0">
+                Loading ...
+              </div>
+            </Html>
+          }
+        >
+          <DeskModel
+            onClickScreen={handleFocusScreen}
+            handleFocusOut={handleFocusOut}
+            screenRef={screenRef}
+            standPositionRef={standPositionRef}
+            lightRef={lightRef}
+            targetRef={targetRef}
+          />
+
+          <ScreenOverlay screenRef={screenRef} focus={focusScreen} />
+        </Suspense>
       </Canvas>
     </div>
   );
 }
 
 useGLTF.preload("assets/3dModels/desk.glb");
+
+function BeforeStart({
+  audioRef,
+}: {
+  audioRef: React.RefObject<HTMLAudioElement | null>;
+}) {
+  const [start, setStart] = useState(true);
+  const startString = "[ click to start ]".split("");
+
+  return (
+    <div
+      className={`start-image z-500 w-screen h-screen fixed left-0 top-0 bg-black flex transition-opacity duration-1000 justify-center items-center 
+        ${
+          start
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }
+        `}
+      onClick={() => {
+        playAudio("src/assets/screen/mouseClick.mp3");
+      }}
+    >
+      <div
+        className="start-content cursor-pointer"
+        onClick={() => {
+          playAudio("src/assets/screen/mouseClick.mp3");
+
+          const audio = audioRef.current;
+          if (audio) {
+            audio.currentTime = 0;
+            audio.play().catch((err: unknown) => {
+              console.warn("audio play 실패", err);
+            });
+          }
+          setStart(false);
+        }}
+      >
+        {startString.map((char, idx) => {
+          return (
+            <span
+              key={idx}
+              className="ml-1 text-white/80 inline-block font-extrabold text-4xl"
+            >
+              {char === " " ? "\u00A0" : char}
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
