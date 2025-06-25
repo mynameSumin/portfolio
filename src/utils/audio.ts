@@ -1,5 +1,5 @@
 export const globalAudio = new Audio();
-globalAudio.loop = true;
+globalAudio.loop = false;
 globalAudio.volume = 0.5;
 
 export const playAudio = (src: string) => {

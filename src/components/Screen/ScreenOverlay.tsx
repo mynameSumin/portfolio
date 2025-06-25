@@ -5,6 +5,7 @@ import * as THREE from "three";
 import MainScreen from "./MainScreen";
 import DocsScreen from "./DocsScreen";
 import EmailScreen from "./EmailScreen";
+import { playAudio } from "../../utils/audio";
 
 export default function ScreenOverlay({
   screenRef,
@@ -75,6 +76,8 @@ export default function ScreenOverlay({
         onPointerDown={(e) => e.stopPropagation()}
         onClick={(e) => {
           e.stopPropagation();
+          playAudio("src/assets/screen/mouseClick.mp3");
+
         }}
         onWheel={(e) => e.stopPropagation()}
         className={`html-ui bg-black text-white ${
