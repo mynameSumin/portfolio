@@ -118,12 +118,19 @@ function PortfolioPage() {
               이어가고자 했습니다.
             </div>
             <div>
-              또한 Canvas와 Matter.js, Three.js, Blender를 활용해 사용자의 클릭이나 움직임에 따라
+              또한 Canvas와 Matter.js를 활용해 사용자의 클릭이나 움직임에 따라
               물리적 반응이 일어나는 인터랙션을 구현함으로써,
             </div>
             <div className="mb-4 font-bold">
               화면을 단순히 보는 것을 넘어 '직접 조작하고 경험하는 공간'으로
               만들었습니다.
+            </div>
+            <div>
+              특히, CONTACT 페이지는 Three.js, Blender로 3D 공간을 구현하여,
+            </div>
+            <div className="mb-4">
+              사용자가 마치 게임을 하듯, 색다른 경험과 즐거움을 느낄 수 있도록
+              기획하였습니다.
             </div>
           </div>
         )}
@@ -191,7 +198,8 @@ function PortfolioPage() {
               하여 로딩 시간이 긴 3D 모델을 비동기 방식으로 처리하였습니다.
             </div>
             <div className="mx-4">
-            이로써 LCP를 약 3초, Speed Index는 약 5.6초 단축시켜 체감 성능을 크게 개선했습니다.
+              이로써 LCP를 약 3초, Speed Index는 약 5.6초 단축시켜 체감 성능을
+              크게 개선했습니다.
             </div>
             <div className="mx-4 mb-3">
               또힌 로딩 중에는 클릭 시 사라지는 UI를 통해 사용자에게는 즉각적인

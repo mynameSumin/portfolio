@@ -21,7 +21,7 @@ export default function CameraController({ focus }: { focus: boolean }) {
     if (focus) {
       api.start({
         camPosition: [-0.1, 1, 1.3],
-        camTarget: [-2.4, 0.25, -6.5],
+        camTarget: [-2.3, 0.25, -6.5],
       });
     } else {
       api.start({
@@ -79,7 +79,7 @@ export default function CameraController({ focus }: { focus: boolean }) {
     }
   
     // 수동으로 회전 업데이트
-    controlsRef.current.setAzimuthalAngle(azimuth + endRotate * 0.003); // 회전 속도
+    controlsRef.current.setAzimuthalAngle(azimuth + endRotate * 0.002); // 회전 속도
     controlsRef.current.update();
     }
   });

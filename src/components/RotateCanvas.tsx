@@ -93,8 +93,8 @@ function RotateCanvas() {
 
       Composite.add(engine.world, mouseConstraint);
 
-      //스크롤 안되는 현상 해결
-      // 예: 타입을 확장하여 `mousewheel`을 포함
+      // 스크롤 안되는 현상 해결
+      // 타입을 확장하여 `mousewheel`을 포함
       interface ExtendedMouse {
         mousewheel: (event: WheelEvent) => void;
       }
