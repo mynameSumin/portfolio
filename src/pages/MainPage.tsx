@@ -175,7 +175,7 @@ function HomePage() {
                 </div>
                 <div className={`${infoStyling}`}>
                   <a
-                    className="hover:text-cyan-700 transition-all duration-200 ease-linear"
+                    className="hover:text-cyan-700 transition-all duration-200 ease-linear pointer-events-auto"
                     href="https://github.com/mynameSumin"
                     target="_blank"
                     rel="noreferrer"
@@ -185,7 +185,7 @@ function HomePage() {
                 </div>
                 <div className={`${infoStyling}`}>
                   <a
-                    className="hover:text-cyan-700 transition-all duration-200 ease-linear"
+                    className="hover:text-cyan-700 pointer-events-auto transition-all duration-200 ease-linear"
                     href="https://velog.io/@msm4167/posts"
                     target="_blank"
                     rel="noreferrer"
