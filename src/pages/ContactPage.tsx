@@ -9,6 +9,8 @@ import ScreenOverlay from "../components/Screen/ScreenOverlay";
 import { startAnimation } from "../utils/contactAnimation";
 import { playAudio } from "../utils/audio";
 import DeskModel from "../components/Screen/DeskModel";
+import bgm from "../assets/screen/ContactBGM.mp3";
+import clickAudio from "../assets/screen/mouseClick.mp3";
 
 export default function ContactPage() {
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ export default function ContactPage() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    audioRef.current = new Audio("src/assets/screen/ContactBGM.mp3");
+    audioRef.current = new Audio(bgm);
     audioRef.current.volume = 1;
     audioRef.current.loop = true;
 
@@ -157,13 +159,13 @@ function BeforeStart({
         }
         `}
       onClick={() => {
-        playAudio("src/assets/screen/mouseClick.mp3");
+        playAudio(clickAudio);
       }}
     >
       <div
         className="start-content cursor-pointer"
         onClick={() => {
-          playAudio("src/assets/screen/mouseClick.mp3");
+          playAudio(clickAudio);
 
           const audio = audioRef.current;
           if (audio) {
