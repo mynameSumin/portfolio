@@ -4,12 +4,15 @@ import tag from "../assets/Dangil/tagImage.png";
 import applyFriend from "../assets/Dangil/applyFriend.mp4";
 import changeMusic from "../assets/Dangil/changeMusic.mp4";
 import pdf from "../assets/Dangil/pdf.mp4";
+import dayAndNight from "../assets/Dangil/dayAndNight.mp4";
 import moveDesk from "../assets/Dangil/moveDesk.mp4";
+import memo from "../assets/Dangil/memo.mp4";
+import timer from "../assets/Dangil/timer.mp4";
 
 function DangilPage() {
   const [modal, setModal] = useState([false, false, false, false]);
   const openModal = (i: number) => {
-    let copy = [...modal];
+    const copy = [...modal];
 
     if (modal[i] == false) {
       copy[i] = true;
@@ -200,15 +203,15 @@ function DangilPage() {
         {modal[2] && (
           <div className="relative explain-0 flex flex-col py-5 px-5 rounded-md w-full bg-[#F4F5F8] mt-2 gap-2">
             <div className="mb-4 font-bold">- 밤낮 모드</div>
-            <div className="mb-4">
+            <div className="mb-1">
               다크모드와 데이모드 구현 시, 자연스러운 변환을 주기 위해 해가 지고
               뜨는 모습을 구현하였습니다.
             </div>
-            <div className="mb-4">
+            <div className="mb-1">
               랜딩 페이지에서는 버튼을 클릭해 변경할 수 있으며, 개인
               페이지에서는 스탠드의 헤드를 클릭하여 변경할 수 있습니다.
             </div>
-            <div className="mb-4">
+            <div className="mb-1">
               css와 svg, 컴포넌트 요소들을 이용하여 구현하는 과정에서{" "}
               <span className="font-bold text-[#4D3591]">
                 각각의 속성 및 이벤트를 유기적으로 연결하는 방법을 익혔고,
@@ -218,28 +221,52 @@ function DangilPage() {
               사용자 행동에 자연스럽게 반응하는 인터페이스를 설계하는 경험을 할
               수 있었습니다.
             </div>
+            <video
+              src={dayAndNight}
+              className="w-[50%] rounded-lg shadow-lg mb-5"
+              autoPlay
+              muted
+              loop
+              controls
+            />
             <div className="mb-4 font-bold mt-5">- 메모 기능</div>
-            <div className="mb-4">svg와 js, css를 사용하여 구현하였습니다.</div>
-            <div className="mb-4">
+            <div className="mb-1">svg와 js, css를 사용하여 구현하였습니다.</div>
+            <div className="mb-1">
               사용자는 메모지의 원하는 색깔, 모양을 선택할 수 있으며 컴퓨터
               하단에만 부착할 수 있습니다.
             </div>
             <div className="mb-4">
               메모지 더블 클릭 시, 메모 내용을 자세히 확인하실 수 있습니다.
             </div>
+            <video
+              src={memo}
+              className="w-[50%] rounded-lg shadow-lg mb-5"
+              autoPlay
+              muted
+              loop
+              controls
+            />
             <div className="mb-4 font-bold mt-5">- 타이머 기능</div>
-            <div className="mb-4">svg와 js를 사용하여 구현하였습니다.</div>
-            <div className="mb-4">
+            <div className="mb-1">svg와 js를 사용하여 구현하였습니다.</div>
+            <div className="mb-1">
               1시간까지는 1초 단위로 시간이 흐르며, 1시간 이후로는 1분 단위로
               올라가도록 만들었습니다.
             </div>
-            <div className="mb-4">
+            <div className="mb-1">
               svg를 사용해보며 그래픽 요소를 코드로 직접 다루는 경험을 하였고,
             </div>
             <div className="mb-4">
               다양한 시간 단위(초, 분) 변화를 부드럽게 표현하기 위해 애니메이션
               처리와 최적화 방안을 고민하는 경험을 할 수 있었습니다.
             </div>
+            <video
+              src={timer}
+              className="w-[50%] rounded-lg shadow-lg mb-5"
+              autoPlay
+              muted
+              loop
+              controls
+            />
           </div>
         )}
         <div
