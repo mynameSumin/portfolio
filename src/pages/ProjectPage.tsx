@@ -11,6 +11,7 @@ import MediplanPage from "./MediplanPage";
 import PortfolioPage from "./PortfolioPage";
 import DangilPage from "./DangilPage";
 import OnlstudiesPage from "./OnlstudiesPage";
+import bgm from "../assets/portfolioPage.mp3";
 
 function ProjectPage() {
   const navigate = useNavigate();
@@ -109,7 +110,7 @@ function ProjectPage() {
                     e.stopPropagation();
 
                     if(fisrtClick){
-                      playAudio("src/assets/portfolioPage.mp3");
+                      playAudio(bgm);
                       setFirstClick(false);
                     }
                     

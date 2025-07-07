@@ -20,8 +20,8 @@ import React from "../assets/React.png";
 function RotateCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const data: Record<string, { title: string; level: number }> = {
-    JS: { title: "JAVASCRIPT", level: 5 },
-    CSS3: { title: "CSS3", level: 5 },
+    JS: { title: "JAVASCRIPT", level: 4 },
+    CSS3: { title: "CSS3", level: 4 },
     HTML5: { title: "HTML5", level: 5 },
     REACT: { title: "REACT", level: 4 },
     TYPESCRIPT: { title: "TYPESCRIPT", level: 3 },
