@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
+
+// components
 import CanvasStar from "../components/canvasStar";
+import MediplanPage from "./MediplanPage";
+import PortfolioPage from "./PortfolioPage";
+import DangilPage from "./DangilPage";
+import OnlstudiesPage from "./OnlstudiesPage";
+
+// utils
 import {
   startPage,
   zoominPlanet,
@@ -7,10 +15,6 @@ import {
 } from "../utils/portfolioAnimation";
 import { useNavigate } from "react-router-dom";
 import { playAudio, stopAudio } from "../utils/audio";
-import MediplanPage from "./MediplanPage";
-import PortfolioPage from "./PortfolioPage";
-import DangilPage from "./DangilPage";
-import OnlstudiesPage from "./OnlstudiesPage";
 import bgm from "../assets/portfolioPage.mp3";
 
 function ProjectPage() {

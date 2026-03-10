@@ -7,10 +7,14 @@ import img6 from "../assets/bgImage/mediplan/6.png";
 import img7 from "../assets/bgImage/mediplan/7.png";
 import rule1 from "../assets/bgImage/mediplan/rule1.png";
 import rule2 from "../assets/bgImage/mediplan/rule2.png";
-// import { explainModal } from "../utils/portfolioAnimation";
+
 import { useState } from "react";
 
+// components
+import StackButton from "../components/StackButton";
+
 function MediplanPage() {
+  const stack = ["React Native", "Typescript", "zustand"];
   const imgList = [img1, img2, img3, img4, img5, img6, img7];
   const [modal, setModal] = useState([false, false, false]);
   const openModal = (i: number) => {
@@ -56,23 +60,20 @@ function MediplanPage() {
             약 복용 시간을 설정해두면, 디스펜서가 정해진 시간에 맞춰 필요한 약을
             꺼내드려요.
           </div>
-          {/* <div className="font-monoKorea font-bold text-[#4A43BF] text-xl leading-15 mb-10">
-            매일의 복약이 번거로움이 아닌, 일상 속 습관이 되도록.
-          </div> */}
         </div>
         <div className="text-4xl text-[#4A43BF] font-extrabold font-phudu mb-5">
           2. STACK
         </div>
         <div className="flex flex-row gap-3 ml-5">
-          <div className="text-xl text-[#4A43BF] font-medium font-phudu mb-10 py-1 px-2 bg-[#EFEEFC] rounded-sm border-2">
-            React Native
-          </div>
-          <div className="text-xl text-[#4A43BF] font-medium font-phudu mb-10 py-1 px-2 bg-[#EFEEFC] rounded-sm border-2">
-            Typescript
-          </div>
-          <div className="text-xl text-[#4A43BF] font-medium font-phudu mb-10 py-1 px-2 bg-[#EFEEFC] rounded-sm border-2">
-            Zustand
-          </div>
+          {
+            stack.map((name, i) => (
+              <StackButton
+              key={i + name}
+              className="text-[#4A43BF] bg-[#EFEEFC]"
+              name={name}
+              />
+            ))
+          }
         </div>
         <div className="text-4xl text-[#4A43BF] font-extrabold font-phudu mb-5">
           3. What I did
@@ -80,7 +81,6 @@ function MediplanPage() {
         <div
           onClick={() => {
             openModal(0);
-            // explainModal(0);
           }}
           className="flex flex-row py-2 px-4 rounded-md w-full bg-[#EFEEFC] items-center gap-2 cursor-pointer"
         >
@@ -200,7 +200,6 @@ function MediplanPage() {
           className="flex flex-row py-2 px-4 rounded-md w-full bg-[#EFEEFC] mt-5 items-center gap-2 cursor-pointer"
           onClick={() => {
             openModal(2);
-            // explainModal(2);
           }}
         >
           <div className="font-medium text-[#4A43BF] text-xl">▶</div>

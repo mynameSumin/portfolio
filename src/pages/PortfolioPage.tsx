@@ -1,6 +1,10 @@
 import { useState } from "react";
 
+// components
+import StackButton from "../components/StackButton";
+
 function PortfolioPage() {
+  const stack = ["vite", 'react', 'Typescript', 'tailwind', 'matter.js', 'anime.js', 'three.js', 'Blender'];
   const [modal, setModal] = useState([false, false, false, false]);
   const openModal = (i: number) => {
     const copy = [...modal];
@@ -52,30 +56,15 @@ function PortfolioPage() {
           2. STACK
         </div>
         <div className="flex flex-row gap-3 ml-5">
-          <div className="text-xl text-sky-950 font-medium font-phudu mb-10 py-1 px-2 bg-cyan-700/10 rounded-sm border-2">
-            vite
-          </div>
-          <div className="text-xl text-sky-950 font-medium font-phudu mb-10 py-1 px-2 bg-cyan-700/10 rounded-sm border-2">
-            React
-          </div>
-          <div className="text-xl text-sky-950 font-medium font-phudu mb-10 py-1 px-2 bg-cyan-700/10 rounded-sm border-2">
-            Typescript
-          </div>
-          <div className="text-xl text-sky-950 font-medium font-phudu mb-10 py-1 px-2 bg-cyan-700/10 rounded-sm border-2">
-            Tailwind
-          </div>
-          <div className="text-xl text-sky-950 font-medium font-phudu mb-10 py-1 px-2 bg-cyan-700/10 rounded-sm border-2">
-            matter.js
-          </div>
-          <div className="text-xl text-sky-950 font-medium font-phudu mb-10 py-1 px-2 bg-cyan-700/10 rounded-sm border-2">
-            anime.js
-          </div>
-          <div className="text-xl text-sky-950 font-medium font-phudu mb-10 py-1 px-2 bg-cyan-700/10 rounded-sm border-2">
-            Three.js
-          </div>
-          <div className="text-xl text-sky-950 font-medium font-phudu mb-10 py-1 px-2 bg-cyan-700/10 rounded-sm border-2">
-            Blender
-          </div>
+          {
+            stack.map((name, i) => (
+              <StackButton
+                key={name + i}
+                className="text-sky-950 bg-cyan-700/10"
+                name={name}
+              />
+            ))
+          }
         </div>
         <div className="text-4xl text-sky-950 font-extrabold font-phudu mb-5">
           3. What I did

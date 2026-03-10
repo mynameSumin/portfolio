@@ -1,10 +1,13 @@
-// import { explainModal } from "../utils/portfolioAnimation";
 import { useState } from "react";
 
+// components
+import StackButton from "../components/StackButton";
+
 function OnlstudiesPage() {
+  const stack = ["vanilla js", "bootstrap", "css"];
   const [modal, setModal] = useState([false, false, false]);
   const openModal = (i: number) => {
-    let copy = [...modal];
+    const copy = [...modal];
 
     if (modal[i] == false) {
       copy[i] = true;
@@ -45,15 +48,15 @@ function OnlstudiesPage() {
           2. STACK
         </div>
         <div className="flex flex-row gap-3 ml-5">
-          <div className="text-xl text-[#657D24] font-medium font-phudu mb-10 py-1 px-2 bg-[#DDEEAF]/70 rounded-sm border-2">
-            vanilla JS
-          </div>
-          <div className="text-xl text-[#657D24] font-medium font-phudu mb-10 py-1 px-2 bg-[#DDEEAF]/70 rounded-sm border-2">
-            bootstrap
-          </div>
-          <div className="text-xl text-[#657D24] font-medium font-phudu mb-10 py-1 px-2 bg-[#DDEEAF]/70 rounded-sm border-2">
-            css
-          </div>
+          {
+            stack.map((name, i) => (
+              <StackButton
+                key={name + i}
+                className="text-[#657D24] bg-[#DDEEAF]/70"
+                name={name}
+              />
+            ))
+          }
         </div>
         <div className="text-4xl text-[#657D24] font-extrabold font-phudu mb-5">
           3. Function
@@ -119,7 +122,6 @@ function OnlstudiesPage() {
           className="flex flex-row py-2 px-4 rounded-md w-full bg-[#DDEEAF]/70 mt-5 items-center gap-2 cursor-pointer"
           onClick={() => {
             openModal(1);
-            // explainModal(1);
           }}
         >
           <div className="font-medium text-[#657D24] text-xl">▶</div>

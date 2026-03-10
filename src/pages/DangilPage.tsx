@@ -9,7 +9,11 @@ import moveDesk from "../assets/Dangil/moveDesk.mp4";
 import memo from "../assets/Dangil/memo.mp4";
 import timer from "../assets/Dangil/timer.mp4";
 
+// components
+import StackButton from "../components/StackButton";
+
 function DangilPage() {
+  const stack = ["REACT", "CSS"];
   const [modal, setModal] = useState([false, false, false, false]);
   const openModal = (i: number) => {
     const copy = [...modal];
@@ -62,12 +66,15 @@ function DangilPage() {
           2. STACK
         </div>
         <div className="flex flex-row gap-3 ml-5">
-          <div className="text-xl text-[#4D3591] font-medium font-phudu mb-10 py-1 px-2 bg-[#C9A6C5]/15 rounded-sm border-2">
-            React
-          </div>
-          <div className="text-xl text-[#4D3591] font-medium font-phudu mb-10 py-1 px-2 bg-[#C9A6C5]/15 rounded-sm border-2">
-            css
-          </div>
+          {
+            stack.map((name, i) => (
+              <StackButton
+              key={i + name}
+              className="text-[#4D3591] bg-[#C9A6C5]/15"
+              name={name}
+              />
+            ))
+          }
         </div>
         <div className="text-4xl text-[#4D3591] font-extrabold font-phudu mb-5">
           3. Function
@@ -144,7 +151,6 @@ function DangilPage() {
           className="flex flex-row py-2 px-4 rounded-md w-full bg-[#C9A6C5]/15 mt-5 items-center gap-2 cursor-pointer"
           onClick={() => {
             openModal(1);
-            // explainModal(1);
           }}
         >
           <div className="font-medium text-[#4D3591] text-xl">▶</div>
@@ -192,7 +198,6 @@ function DangilPage() {
           className="flex flex-row py-2 px-4 rounded-md w-full bg-[#C9A6C5]/15 mt-5 items-center gap-2 cursor-pointer"
           onClick={() => {
             openModal(2);
-            // explainModal(2);
           }}
         >
           <div className="font-medium text-[#4D3591] text-xl">▶</div>
@@ -273,7 +278,6 @@ function DangilPage() {
           className="flex flex-row py-2 px-4 rounded-md w-full bg-[#C9A6C5]/15 mt-5 items-center gap-2 cursor-pointer"
           onClick={() => {
             openModal(3);
-            // explainModal(3);
           }}
         >
           <div className="font-medium text-[#4D3591] text-xl">▶</div>
