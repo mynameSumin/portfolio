@@ -2,23 +2,17 @@ import { RefObject, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
-export default function DeskModel({
-    onClickScreen,
-    handleFocusOut,
-    screenRef,
-    standPositionRef,
-    lightRef,
-    targetRef,
-    handleLight
-  }: {
-    onClickScreen: () => void;
-    handleFocusOut: () => void;
-    screenRef: React.RefObject<THREE.Mesh | null>;
-    standPositionRef: React.MutableRefObject<THREE.Vector3 | null>;
-    lightRef: RefObject<THREE.SpotLight | null>;
-    targetRef: React.MutableRefObject<THREE.Object3D>;
-    handleLight: () => void;
-  }) {
+interface DeskModelProps {
+  onClickScreen: () => void;
+  handleFocusOut: () => void;
+  screenRef: React.RefObject<THREE.Mesh | null>;
+  standPositionRef: React.MutableRefObject<THREE.Vector3 | null>;
+  lightRef: RefObject<THREE.SpotLight | null>;
+  targetRef: React.MutableRefObject<THREE.Object3D>;
+  handleLight: () => void;
+}
+
+export default function DeskModel({ onClickScreen, handleFocusOut, screenRef, standPositionRef, lightRef, targetRef, handleLight }: DeskModelProps) {
     const { scene } = useGLTF("assets/3dModels/desk.glb");
     
     useEffect(() => {

@@ -43,7 +43,7 @@ export const animateImage = () => {
 };
 
 //캐릭터 클릭 시 애니메이션
-export const clickCharacter = (width: number, imgWidth: number): any => {
+export const clickCharacter = (width: number, imgWidth: number) => {
   let letterSpace = 0;
   if (width <= 430) letterSpace = 1;
   else if (width < 640) letterSpace = width * 0.0075;
@@ -127,7 +127,7 @@ export const clickCharacter = (width: number, imgWidth: number): any => {
 };
 
 //화면 사이즈 변경 시 반응형 애니매이션
-export const resizeLetterSpace = (width: number): any => {
+export const resizeLetterSpace = (width: number) => {
   const currentLetterSpacing =
     parseFloat(
       getComputedStyle(document.querySelector(".name")!).letterSpacing

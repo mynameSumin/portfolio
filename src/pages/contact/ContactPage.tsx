@@ -1,19 +1,22 @@
-// ContactPage.tsx
+// three.js
 import { Canvas } from "@react-three/fiber";
 import { Html, useGLTF } from "@react-three/drei";
-import { useNavigate } from "react-router-dom";
-import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import CameraController from "../utils/threejs/renderer";
-import ScreenOverlay from "../components/Screen/ScreenOverlay";
-import { startAnimation } from "../utils/contactAnimation";
-import { playAudio } from "../utils/audio";
-import DeskModel from "../components/Screen/DeskModel";
-import bgm from "../assets/screen/ContactBGM.mp3";
-import clickAudio from "../assets/screen/mouseClick.mp3";
+import CameraController from "../../utils/threejs/renderer";
+
+// components
+import ScreenOverlay from "../../components/Screen/ScreenOverlay";
+import DeskModel from "../../components/Screen/DeskModel";
+import bgm from "../../assets/screen/ContactBGM.mp3";
+
+// utils
+import { startAnimation } from "../../utils/contactAnimation";
+import { playAudio } from "../../utils/audio";
+import clickAudio from "../../assets/screen/mouseClick.mp3";
+import { Suspense, useEffect, useRef, useState } from "react";
+import Header from "./components/Header.tsx";
 
 export default function ContactPage() {
-  const navigate = useNavigate();
   const [focusScreen, setFocusScreen] = useState(false);
   const [light, setLight] = useState(true);
   const screenRef = useRef<THREE.Mesh>(null);
@@ -45,43 +48,7 @@ export default function ContactPage() {
   return (
     <div className="w-screen h-screen bg-amber-800/90">
       <BeforeStart audioRef={audioRef} />
-      <header className="fixed -translate-x-1/2 left-1/2 z-111 mt-10 w-9/10 lg:w-[920px] mx-auto columns-3 px-5 mb-10 font-medium flex justify-between">
-        <div
-          className="text-xl cursor-pointer sm:text-3xl text-black hover:text-white transition-all duration-500"
-          onClick={() => {
-            audioRef.current?.pause();
-            audioRef.current!.currentTime = 0;
-            navigate("/");
-          }}
-        >
-          ABOUT ME
-        </div>
-        {window.innerWidth > 430 ? (
-          <div
-            className="text-xl cursor-pointer sm:text-3xl text-black hover:text-white transition-all duration-500"
-            onClick={() => {
-              audioRef.current?.pause();
-              audioRef.current!.currentTime = 0;
-              navigate("/project");
-            }}
-          >
-            PROJECTS
-          </div>
-        ) : (
-          <div className="text-xl cursor-pointer sm:text-3xl text-black hover:text-white transition-all duration-500">
-            <a
-              href="https://www.notion.so/16ef3b205f1e80079ce2e2f3faf613c4?v=f9b691cba218416abfec4a4555365c5b"
-              target="_blank"
-            >
-              PROJECTS
-            </a>
-          </div>
-        )}
-        <div className="text-xl cursor-pointer sm:text-3xl text-white">
-          CONTACT
-        </div>
-      </header>
-
+      <Header />
       <Canvas
         shadows
         camera={{ position: [-1.5, 1.2, 2.5], fov: 30 }}
