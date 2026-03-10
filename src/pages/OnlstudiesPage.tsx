@@ -92,7 +92,6 @@ function OnlstudiesPage() {
         <div
           onClick={() => {
             openModal(0);
-            // explainModal(0);
           }}
           className="flex flex-row py-2 px-4 rounded-md w-full bg-[#DDEEAF]/70 items-center gap-2 cursor-pointer"
         >
@@ -152,7 +151,6 @@ function OnlstudiesPage() {
           className="flex flex-row py-2 px-4 rounded-md w-full bg-[#DDEEAF]/70 mt-5 items-center gap-2 cursor-pointer"
           onClick={() => {
             openModal(2);
-            // explainModal(2);
           }}
         >
           <div className="font-medium text-[#657D24] text-xl">▶</div>
